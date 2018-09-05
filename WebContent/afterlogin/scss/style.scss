@@ -1,0 +1,165 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,800,200);
+
+$menuWidth: 16em;
+$menuColor: #353441;
+$menuText: #9DC6D1;
+$menuItemHeight: 60px;
+$degActive: 15deg;
+$degHover: 1deg;
+$timing: 150ms;
+$contentBG: #9DC6D1;
+$bodyBg: #21212D;
+
+html,
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Raleway, sans-serif;
+  line-height: 1.7;
+  perspective-origin: 0% 50%;
+  perspective: 800px;
+  background: $bodyBg;
+}
+
+nav,
+main {
+  transition: transform $timing ease-out;
+}
+
+nav {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: $menuWidth;
+  background-color: $menuColor;
+  transform: translateX(-$menuWidth);
+  &.menu-active {
+    transform: translateX(0);
+  }
+  &.menu-hover {
+    transform: translateX( -($menuWidth - ($menuWidth/16)) );
+  }
+  // Menu Toggle
+  h1 {
+    z-index: 100;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: -$menuItemHeight;
+    height: $menuItemHeight;
+    width: $menuItemHeight;
+    line-height: $menuItemHeight;
+    font-size: .8em;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: $menuText;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: $menuColor;
+    cursor: pointer;
+    &:hover {
+      color: $menuColor;
+      background: #fff;
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+    li {
+      display: inline-block;
+      padding: 0 1em;
+      width: 100%;
+      height: $menuItemHeight;
+      color: $menuText;
+      line-height: $menuItemHeight;
+      background-color: $menuColor;
+      &:nth-of-type(2n) {
+        background-color: lighten($menuColor, 2%);
+      }
+      &:hover {
+        background: #fff;
+      }
+    }
+}
+
+
+main {
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden; // Can't scroll this container or the overflow will be visible when the menu is active
+  background-color: #9DC6D1;
+  transform-origin: 0% 50%;
+  // Shadow
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(to right, transparent, rgba($bodyBg, .5));
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity $timing ease-out, visibility 0s $timing;
+  }
+  &.menu-active {
+    border-radius: .001px;
+    transform: translateX( $menuWidth ) rotateY( $degActive );
+    &:after {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity $timing ease-out, visibility 0s;
+    }
+  }
+  &.menu-hover {
+    border-radius: .001px;
+    transform: translateX( ($menuWidth/16) ) rotateY( $degHover );
+  }
+  
+  section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    padding: 1em 4em;
+    max-width: 680px;
+    overflow: auto;
+    background-color: rgba(white,.5);
+  }
+}
+
+// Body Copy Styling
+// =================
+
+section {
+  h1 {
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 2em;
+  }
+  p {
+    display: inline-block;
+    margin: 16px 0;
+  }
+}

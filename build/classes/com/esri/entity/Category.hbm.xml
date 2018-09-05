@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+<hibernate-mapping default-access="property"
+	package="com.esri.entity">
+	<class name="Category" table="category">
+		<id name="category" type="string" column="CATEGORY">
+			<generator class="assigned" />
+		</id>
+		<!-- 在一对多的一段使用set进行关联关系的配置 inverse=true 表示将关联关系的控制管理交给对方管理 通常关联关系的管理交给多的一方进行控制，因为多的一方具有外键，管理关联关系更加方便有效 -->
+		<set name="news" inverse="true" cascade="all">
+			<key column="CATEGORY" />
+			<one-to-many class="News" />
+		</set>
+
+		<set name="users" inverse="true" cascade="all" table="middle">
+			<key column="category" />
+			<many-to-many class="User" column="username"
+				lazy="false" />
+		</set>
+	</class>
+</hibernate-mapping>

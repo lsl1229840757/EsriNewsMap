@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!-- 配置开发者模式，修改热部署 -->
+	<!-- <constant name="struts.devMode" value="true"></constant> -->
+	<constant name="struts.enable.DynamicMethodInvocation"
+		value="true" />
+	<package name="root" extends="struts-default" namespace="/esri">
+		<interceptors>
+			<!-- 非法登陆拦截器 -->
+			<interceptor name="authority"
+				class="com.esri.interceptor.AuthorityInterceptor">
+			</interceptor>
+			<interceptor-stack name="mydefault">
+				<interceptor-ref name="defaultStack" />
+				<interceptor-ref name="authority"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="mydefault" />
+		
+		<global-results>
+			<result name="error">/error.jsp</result>
+			<result name="login" type="redirect">../pict/LoginPage</result>
+		</global-results>
+			
+		<!-- 用户信息action -->
+		<action name="userInfo" class="com.esri.action.UserAction" method="userInfo">
+			<result name="success">user/userInformation.jsp</result>
+			<result name="input">user/userInformation.jsp</result>
+		</action> 
+
+		<!-- 新闻action -->
+		<action name="map" class="com.esri.action.UserAction" method="entermap">
+			<result name="success">../newsMap/map2.jsp</result>
+		</action> 
+		
+		<action name="enterchange" class="com.esri.action.UserAction"
+			method="enterChange">
+			<result name="success">../user/changeInformation.jsp</result>
+			<result name="error">/error.jsp</result>
+		</action>
+		<!-- 用户修改信息action -->
+		<action name="changeinfo" class="com.esri.action.UserAction"
+			method="changeInfo">
+			<result name="success">../user/userInformation.jsp</result>
+			<result name="input">../user/changeInformation.jsp</result>
+		</action>
+		
+		<!-- 初始化新闻 -->
+		<action name="initiateNews" class="com.esri.action.NewsAction" method="initiateNews">
+			<!-- AjAX无返回值 -->
+		</action>
+	
+	</package>
+	<package name="root2" extends="struts-default" namespace="/pict">
+		<!-- 李松廉修改：注册页面的访问 -->
+		<action name="RegisterPage" class="com.esri.action.UserAction" method="enterRegist">
+			<result name="success">/regist.jsp</result>			
+		</action>
+		
+		<!-- 李松廉修改：登录页面的访问 -->
+		<action name="LoginPage" class="com.esri.action.UserAction" method="enterLogin">
+			<result name="success">/login.jsp</result>			
+		</action>
+	
+		<!-- 用户登陆action -->
+		<action name="login" class="com.esri.action.UserAction"
+			method="login">
+			<result name="success">../afterlogin/after.jsp</result>
+			<result name="input">/login.jsp</result>
+			<result name="error">/login.jsp</result>
+		</action>
+		
+		<action name="ajax" class="com.esri.action.UserAction"
+			method="excuteAjax">
+		</action>
+		
+		<action name="ajaxImage" class="com.esri.action.CreateImageAction"
+			method="executeAjax">
+			
+		</action>
+		<!-- 产生验证码action -->
+		<action name="draw" class="com.esri.action.CreateImageAction"
+			method="draw">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">inputStream</param>
+			</result>
+		</action>
+		
+		<!-- 用户注册action -->
+		<action name="regist" class="com.esri.action.UserAction"
+			method="regist">
+			<result name="success">/user/userInformation.jsp</result>
+			<result name="input">/regist.jsp</result>
+		</action>
+	
+	</package>
+</struts>

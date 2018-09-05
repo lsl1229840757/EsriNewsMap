@@ -1,0 +1,120 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,800,200)
+	;
+
+html, body {
+	height: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Raleway, sans-serif;
+	line-height: 1.7;
+	-webkit-perspective-origin: 0% 50%;
+	perspective-origin: 0% 50%;
+	-webkit-perspective: 800px;
+	perspective: 800px;
+	background: #21212D;
+}
+
+nav {
+	transition: -webkit-transform 150ms ease-out;
+	transition: transform 150ms ease-out;
+	transition: transform 150ms ease-out, -webkit-transform 150ms ease-out;
+}
+
+nav {
+	z-index: 100;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 16em;
+	background-color: #353441;
+	-webkit-transform: translateX(-16em);
+	transform: translateX(-16em);
+}
+
+nav.menu-active {
+	-webkit-transform: translateX(0);
+	transform: translateX(0);
+}
+
+nav.menu-hover {
+	-webkit-transform: translateX(-15em);
+	transform: translateX(-15em);
+}
+
+nav h1 {
+	z-index: 100;
+	display: block;
+	position: absolute;
+	top: 0;
+	right: -60px;
+	height: 60px;
+	width: 60px;
+	line-height: 60px;
+	font-size: .8em;
+	font-weight: 800;
+	letter-spacing: 1px;
+	color: #9DC6D1;
+	text-transform: uppercase;
+	text-align: center;
+	background-color: #353441;
+	cursor: pointer;
+	margin-top: 0px;
+}
+
+nav h1:hover {
+	color: #353441;
+	background: #fff;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+	padding: 0 1em;
+	width: 100%;
+	height: 60px;
+	color: #9DC6D1;
+	line-height: 60px;
+	background-color: #353441;
+	margin-bottom: 40px;
+	cursor: pointer;
+}
+
+nav li:first-child {
+	margin-top: 20px;
+}
+
+nav li:nth-of-type(2n) {
+	background-color: #3a3947;
+}
+
+nav li:hover {
+	background: #fff;
+}
+
+.right {
+	width:100%;
+	margin-top: 60px;
+	float: left;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	position: absolute;
+	z-index:10;
+}
+.esri-ui-top-left {
+	margin-top:60px;
+}
+.welcome {
+	font-size: 30px;
+	margin-bottom: 30px;
+}

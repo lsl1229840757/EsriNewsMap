@@ -1,0 +1,7 @@
+## this is db config file
+driver=com.mysql.jdbc.Driver
+user=root
+password=12345
+useSSL=false
+verifyServerCertificate=false
+url=jdbc:mysql://localhost:3306/esri
