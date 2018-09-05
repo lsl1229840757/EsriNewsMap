@@ -125,7 +125,7 @@ public class CreateImageAction extends ActionSupport{
 		String checkCod = req.getParameter("checkCode");
 		
 		Map<String,String> map = new HashMap<String,String>();
-		if(checkCod.equals(checkCode)) {
+		if(checkCod.toLowerCase().equals(checkCode.toLowerCase())) {
 			map.put("info", "验证码输入正确!");
 			map.put("flag", "true");
 			System.out.println("验证码输入正确");

@@ -132,7 +132,7 @@ public class UserAction extends ActionSupport {
 			super.addFieldError("checkCode", "验证码不能为空!");
 		}
 		// 验证码输入是否正确
-		if (!checkCode.equals(checkCode2)) {
+		if (!checkCode.toLowerCase().equals(checkCode2.toLowerCase())) {
 			super.addFieldError("checkCode", "验证码输入错误!");
 		}
 		// 检验用户密码和用户名是否匹配
@@ -230,7 +230,7 @@ public class UserAction extends ActionSupport {
 			super.addFieldError("checkCode", "验证码不能为空!");
 		}
 		// 验证码输入是否正确
-		if (!checkCode.equals(checkCode2)) {
+		if (!checkCode.toLowerCase().equals(checkCode2.toLowerCase())) {
 			super.addFieldError("checkCode", "验证码输入错误!");
 		}
 
@@ -295,7 +295,7 @@ public class UserAction extends ActionSupport {
 			super.addFieldError("checkCode", "验证码不能为空!");
 		}
 		// 验证码输入是否正确
-		if (!checkCode.equals(checkCode2)) {
+		if (!checkCode.toLowerCase().equals(checkCode2.toLowerCase())) {
 			super.addFieldError("checkCode", "验证码输入错误!");
 		}
 	}
