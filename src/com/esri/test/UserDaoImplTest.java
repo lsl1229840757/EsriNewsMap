@@ -14,15 +14,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.esri.entity.News;
 import com.esri.service.NewsService;
-/**
- * 锟斤拷锟斤拷Junit锟斤拷spring锟斤拷锟皆伙拷锟斤拷
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:applicationContext.xml"})
 
 public class UserDaoImplTest {
 
-	//锟斤拷锟斤拷只锟斤拷写为锟接口碉拷锟斤拷式锟斤拷UserService锟斤拷spring锟皆讹拷注锟斤拷
 	@Resource
 	private NewsService news;
 
@@ -38,6 +34,14 @@ public class UserDaoImplTest {
 		System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(date));
 		System.out.println(list);
 	}
+	@Test
+	public void testfind2() {
+		
+		List<News> list = news.findRecentNews();
+		System.out.println(list.size());
+		for(News s:list) {
+			System.out.println(s);
+		}
+	}
 	
-
 }

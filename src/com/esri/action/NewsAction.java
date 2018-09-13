@@ -1,5 +1,6 @@
 package com.esri.action;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -39,11 +40,8 @@ public class NewsAction extends ActionSupport {
 		System.out.println("ï¿½ï¿½ï¿½Êµï¿½Ç°action");
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
-		//ï¿½ï¿½È¡Ç°Ì¨ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½
-		String timestr = req.getParameter("pubDate");
-		try {
-			Date time = new Date(Long.valueOf(timestr));
-			List<News> news = ns.findNewsByPubWeek(time);
+			System.out.println("Ç°¶Ë·¢ÐÅÏ¢ÁË");
+			List<News> news = ns.findRecentNews();
 			JSONArray ja = new JSONArray();
 			for(News n:news) {
 				JSONObject jb = new JSONObject();
@@ -59,10 +57,11 @@ public class NewsAction extends ActionSupport {
 				jb.put("pubDate",n.getPubDate());
 				ja.put(jb);
 			}
-			ServletActionContext.getResponse().getWriter().println(ja.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			try {
+				ServletActionContext.getResponse().getWriter().println(ja.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		
 	}
 	

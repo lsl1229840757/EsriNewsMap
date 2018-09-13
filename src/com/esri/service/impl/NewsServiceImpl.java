@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.esri.dao.NewsDao;
+import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
 import com.esri.service.NewsService;
 @Service
@@ -28,18 +29,13 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	@Override
-	public List<News> findNewsByPubDate(Date pubDate) {
-		return nd.findNewsByPubDate(pubDate);
+	public List<News> findRecentNews() {
+		return nd.findRecentNews();
 	}
 
 	@Override
-	public List<News> findNewsByPubWeek(Date endPubDate) {
-		return nd.findNewsByPubWeek(endPubDate);
-	}
-
-	@Override
-	public List<News> findAll() {
-		return nd.findAll();
+	public List<HistoryNews> findNewsByTime(Date now) {
+		return nd.findNewsByTime(now);
 	}
 
 }

@@ -15,8 +15,6 @@ public class testHibernate {
 	@Test
 	public void test() throws ParseException {
 		NewsDaoImpl nd = new NewsDaoImpl();
-		List<News> news = nd.findNewsByPubDate(new Date());
-		System.out.println(news);
 	}
 	@Test
 	public void test2() {

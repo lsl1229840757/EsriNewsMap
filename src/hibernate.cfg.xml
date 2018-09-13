@@ -14,6 +14,7 @@
 		<mapping resource="com\esri\entity\Category.hbm.xml" />
 		<mapping resource="com\esri\entity\User.hbm.xml" />
 		<mapping resource="com\esri\entity\News.hbm.xml" />
+		<mapping resource="com\esri\entity\HistoryNews.hbm.xml" />
 	</session-factory>
 
 </hibernate-configuration>
