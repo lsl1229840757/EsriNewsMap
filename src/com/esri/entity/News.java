@@ -3,47 +3,35 @@ package com.esri.entity;
 import java.util.Date;
 
 /**
- * 新闻域模型
+ * 鏂伴椈鍩熸ā鍨�
  * 
- * @author 胡森
+ * @author 鑳℃．
  *
  */
 public class News {
 
-	// 标识id
+	// 鏍囪瘑id
 	private Integer id;
-	// 新闻来源
+	// 鏂伴椈鏉ユ簮
 	private String origin;
-	// 分割关键词
+	// 鍒嗗壊鍏抽敭璇�
 	private String keyWord;
-	// web端原文链接
+	// web绔師鏂囬摼鎺�
 	private String webUrl;
-	// 移动端的原文链接
+	// 绉诲姩绔殑鍘熸枃閾炬帴
 	private String mobileUrl;
-	// 封面图片链接
+	// 灏侀潰鍥剧墖閾炬帴
 	private String picUrl;
-	// 经度
+	// 缁忓害
 	private double longitude;
-	// 纬度
+	// 绾害
 	private double latitude;
-	// 页面浏览量
-	private double pageView;
-	// 新闻标题
+	// 鏂伴椈鏍囬
 	private String title;
-	// 新闻发布日期
-	private Date pubDate;
-	// 新闻类别
-	private Category category = new Category();
+	// 鏂伴椈鍙戝竷鏃ユ湡
+	private int pubDate;
 
 	
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	public Integer getId() {
 		return id;
 	}
@@ -108,14 +96,6 @@ public class News {
 		this.latitude = latitude;
 	}
 
-	public double getPageView() {
-		return pageView;
-	}
-
-	public void setPageView(double pageView) {
-		this.pageView = pageView;
-	}
-
 	public String getTitle() {
 		return title;
 	}
@@ -124,16 +104,16 @@ public class News {
 		this.title = title;
 	}
 
-	public Date getPubDate() {
+	public int getPubDate() {
 		return pubDate;
 	}
 
-	public void setPubDate(Date pubDate) {
+	public void setPubDate(int pubDate) {
 		this.pubDate = pubDate;
 	}
 
 	public News(String origin, String keyWord, String webUrl, String mobileUrl, String picUrl, double longitude,
-			double latitude, double pageView, String title, Date pubDate) {
+			double latitude, String title, int pubDate) {
 		super();
 		this.origin = origin;
 		this.keyWord = keyWord;
@@ -142,7 +122,6 @@ public class News {
 		this.picUrl = picUrl;
 		this.longitude = longitude;
 		this.latitude = latitude;
-		this.pageView = pageView;
 		this.title = title;
 		this.pubDate = pubDate;
 	}
@@ -155,7 +134,7 @@ public class News {
 	public String toString() {
 		return "{id:" + id + ", origin:" + origin + ", keyWord:" + keyWord + ", webUrl:" + webUrl + ", mobileUrl:"
 				+ mobileUrl + ", picUrl:" + picUrl + ", longitude:" + longitude + ", latitude:" + latitude
-				+ ", pageView:" + pageView + ", title:" + title + ", pubDate:" + pubDate + "}";
+				+ ", title:" + title + ", pubDate:" + pubDate + "}";
 	}
 
 }

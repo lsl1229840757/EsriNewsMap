@@ -36,10 +36,10 @@ public class NewsDaoImpl implements NewsDao {
 	
 	@Override
 	public List<News> findNewsByTitle(String title) {
-		String hql = "from News where title = :title";
+		String hql = "from News where title like :title";
 		Session session = sessionfactory.getCurrentSession();
 		Query query = session.createQuery(hql);
-		query.setString("title", title);
+		query.setString("title", "%"+title+"%");
 		List<News> newsList = query.list();
 		return newsList;
 	}

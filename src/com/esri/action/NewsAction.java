@@ -19,8 +19,8 @@ import com.esri.service.NewsService;
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 
- * @author ÀîËÉÁ®
- * ÐÂÎÅÏÔÊ¾action
+ * @author ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾action
  *
  */
 @Scope("prototype")
@@ -33,13 +33,13 @@ public class NewsAction extends ActionSupport {
 	
 	public HttpServletRequest req = ServletActionContext.getRequest();
 	/**
-	 *µÚÒ»´Î³õÊ¼»¯ÐÂÎÅ 
+	 *ï¿½ï¿½Ò»ï¿½Î³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	 */
 	public void initiateNews() {
-		System.out.println("·ÃÎÊµ±Ç°action");
+		System.out.println("ï¿½ï¿½ï¿½Êµï¿½Ç°action");
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
-		//»ñÈ¡Ç°Ì¨µÄÊ±¼ä²ÎÊý
+		//ï¿½ï¿½È¡Ç°Ì¨ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½
 		String timestr = req.getParameter("pubDate");
 		try {
 			Date time = new Date(Long.valueOf(timestr));
@@ -55,7 +55,6 @@ public class NewsAction extends ActionSupport {
 				jb.put("picUrl",n.getPicUrl());
 				jb.put("longitude",n.getLongitude());
 				jb.put("latitude",n.getLatitude());
-				jb.put("pageView",n.getPageView());
 				jb.put("title",n.getTitle());
 				jb.put("pubDate",n.getPubDate());
 				ja.put(jb);

@@ -2,20 +2,19 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping default-access="property" package="com.esri.entity">
 		
-	<class name="News" table="news">
+	<class name="News" table="history_news">
 		<id name="id" type="integer" column="ID">
 			<generator class="native" />
 		</id>
-		<property name="origin" column="ORIGIN"/>
-		<property name="keyWord" column="KEY_WORDS"/>
-		<property name="webUrl" column="WEB_URL"/>
-		<property name="mobileUrl" column="MOBILE_URL"/>
-		<property name="picUrl" column="PIC_URL"/>
-		<property name="longitude" column="LONGITUDE"/>
-		<property name="latitude" column="LATITUDE"/>
-		<property name="pubDate" column="PUB_DATE"/>
-		<property name="pageView" column="PAGE_VIEW"/>
-		<property name="title" column="TITLE"/>
-		<many-to-one name="category" column="CATEGORY"/>
+		<property name="origin" column="origin"/>
+		<property name="keyWord" column="key_words"/>
+		<property name="webUrl" column="web_url"/>
+		<property name="mobileUrl" column="mobile_url"/>
+		<property name="picUrl" column="pic_url"/>
+		<property name="longitude" column="lng"/>
+		<property name="latitude" column="lat"/>
+		<property name="pubDate" column="time"/>
+		<property name="title" column="title"/>
+		
 	</class>
 </hibernate-mapping>
