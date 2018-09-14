@@ -1,5 +1,7 @@
 package com.esri.action;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -17,12 +19,6 @@ import com.esri.dao.daoImpl.NewsDaoImpl;
 import com.esri.entity.News;
 import com.esri.service.NewsService;
 import com.opensymphony.xwork2.ActionSupport;
-/**
- * 
- * @author 李松廉
- * 新闻显示action
- *
- */
 @Scope("prototype")
 @Repository
 public class NewsAction extends ActionSupport {
@@ -33,17 +29,14 @@ public class NewsAction extends ActionSupport {
 	
 	public HttpServletRequest req = ServletActionContext.getRequest();
 	/**
-	 *第一次初始化新闻 
+	 *锟斤拷一锟轿筹拷始锟斤拷锟斤拷锟斤拷 
 	 */
 	public void initiateNews() {
-		System.out.println("访问当前action");
+		System.out.println("锟斤拷锟绞碉拷前action");
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
-		//获取前台的时间参数
-		String timestr = req.getParameter("pubDate");
-		try {
-			Date time = new Date(Long.valueOf(timestr));
-			List<News> news = ns.findNewsByPubWeek(time);
+			System.out.println("前端发信息了");
+			List<News> news = ns.findRecentNews();
 			JSONArray ja = new JSONArray();
 			for(News n:news) {
 				JSONObject jb = new JSONObject();
@@ -55,17 +48,25 @@ public class NewsAction extends ActionSupport {
 				jb.put("picUrl",n.getPicUrl());
 				jb.put("longitude",n.getLongitude());
 				jb.put("latitude",n.getLatitude());
-				jb.put("pageView",n.getPageView());
 				jb.put("title",n.getTitle());
 				jb.put("pubDate",n.getPubDate());
 				ja.put(jb);
 			}
-			ServletActionContext.getResponse().getWriter().println(ja.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			try {
+				ServletActionContext.getResponse().getWriter().println(ja.toString());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		
 	}
 	
+	public void executeAjax() {
+		JSONArray ja = ns.statistics();
+		try {
+			ServletActionContext.getResponse().getWriter().print(ja);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

@@ -1,21 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
-<hibernate-mapping default-access="property" package="com.esri.entity">
-		
-	<class name="News" table="news">
-		<id name="id" type="integer" column="ID">
-			<generator class="native" />
-		</id>
-		<property name="origin" column="ORIGIN"/>
-		<property name="keyWord" column="KEY_WORDS"/>
-		<property name="webUrl" column="WEB_URL"/>
-		<property name="mobileUrl" column="MOBILE_URL"/>
-		<property name="picUrl" column="PIC_URL"/>
-		<property name="longitude" column="LONGITUDE"/>
-		<property name="latitude" column="LATITUDE"/>
-		<property name="pubDate" column="PUB_DATE"/>
-		<property name="pageView" column="PAGE_VIEW"/>
-		<property name="title" column="TITLE"/>
-		<many-to-one name="category" column="CATEGORY"/>
-	</class>
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.esri.entity.News" table="recent_news">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="native" />
+        </id>
+        <property name="origin" type="java.lang.String">
+            <column name="origin" />
+        </property>
+        <property name="keyWord" type="java.lang.String">
+            <column name="key_words" />
+        </property>
+        <property name="webUrl" type="java.lang.String">
+            <column name="web_url" />
+        </property>
+        <property name="mobileUrl" type="java.lang.String">
+            <column name="mobile_url" />
+        </property>
+        <property name="picUrl" type="java.lang.String">
+            <column name="pic_url" />
+        </property>
+        <property name="longitude" type="double">
+            <column name="lng" />
+        </property>
+        <property name="latitude" type="double">
+            <column name="lat" />
+        </property>
+        <property name="title" type="java.lang.String">
+            <column name="title" />
+        </property>
+        <property name="pubDate" type="int">
+            <column name="time" />
+        </property>
+    </class>
 </hibernate-mapping>

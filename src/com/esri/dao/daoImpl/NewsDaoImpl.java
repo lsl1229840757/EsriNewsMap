@@ -13,7 +13,9 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
 import com.esri.dao.NewsDao;
+import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
+import com.esri.util.CalenderTools;
 import com.esri.util.GetTime;
 
 /**
@@ -36,10 +38,10 @@ public class NewsDaoImpl implements NewsDao {
 	
 	@Override
 	public List<News> findNewsByTitle(String title) {
-		String hql = "from News where title = :title";
+		String hql = "from News where title like :title";
 		Session session = sessionfactory.getCurrentSession();
 		Query query = session.createQuery(hql);
-		query.setString("title", title);
+		query.setString("title", "%"+title+"%");
 		List<News> newsList = query.list();
 		return newsList;
 	}
@@ -55,49 +57,35 @@ public class NewsDaoImpl implements NewsDao {
 	}
 
 	@Override
-	public List<News> findNewsByPubDate(Date pubDate) {
+	public List<News> findRecentNews() {
 		Session session = sessionfactory.getCurrentSession();
-		long time = pubDate.getTime();
-		// 获取1天的毫秒数
-		long dayTime = 24 * 60 * 60 * 1000;
-		// 当前时间毫秒数-7天的毫秒数=7天之间那天的毫秒数
-		long times = time - dayTime;
-		// 将毫秒数转日期
-		Date beginPubDate = new Date(times);
-		String hql = "from News news where news.pubDate between '"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(beginPubDate)+"'  and '"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(pubDate)+"' ";
-		Query query = session.createQuery(hql);
+		Query query = session.createQuery("from News where 1 = 1");
 		List<News> newsList = query.list();
 		return newsList;
 	}
-
-	/*@Override
-	public List<News> findNewsByRegion(String region) {
-		String hql = "from News where region = :region";
-		Session session = SingleSession.getSession();
-		Query query = session.createQuery(hql);
-		query.setString("region", region);
-		List<News> newsList = query.list();
-		session.close();
-		return newsList;
-	}*/
-
-	@Override
-	public List<News> findNewsByPubWeek(Date endPubDate) {
-		Session session = sessionfactory.getCurrentSession();
-		System.out.println(GetTime.getStatetime(endPubDate,-7));
-		String hql = "from News news where news.pubDate between '"+GetTime.getStatetime(endPubDate,-7)+"'  and '"+GetTime.getStatetime(endPubDate, 0)+"' ";
-		Query query = session.createQuery(hql);
-		List<News> newsList = query.list();
-		return newsList;
+	
+	public int findRecentNewsCount(Date now) {
+		Session currentSession = sessionfactory.getCurrentSession();
+		String hql = "select count(h.id) from News h where h.pubDate between "+CalenderTools.getYesterDay(now)+" and "+CalenderTools.getNowTime(now);
+		Query query = currentSession.createQuery(hql);
+		return ((Number) query.uniqueResult()).intValue();
 	}
 
 	@Override
-	public List<News> findAll() {
-		Session session = sessionfactory.getCurrentSession();
-		String hql = "from News";
-		Query query = session.createQuery(hql);
-		List<News> newsList = query.list();
-		return newsList;
+	public List<HistoryNews> findHistoryNewsByTime(Date now) {
+		Session currentSession = sessionfactory.getCurrentSession();
+		String hql = "from HistoryNews news where news.pubDate between "+CalenderTools.getYesterDay(now)+" and "+ CalenderTools.getNowTime(now);
+		Query query = currentSession.createQuery(hql);
+		List<HistoryNews> list = query.list();
+		return list;
+	}
+
+	@Override
+	public int findHistoryNewsCountByTime(Date now) {
+		Session currentSession = sessionfactory.getCurrentSession();
+		String hql = "select count(h.id) from HistoryNews h where h.pubDate between "+CalenderTools.getYesterDay(now)+" and "+CalenderTools.getNowTime(now);
+		Query query = currentSession.createQuery(hql);
+		return ((Number) query.uniqueResult()).intValue();
 	}
 
 }

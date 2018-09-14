@@ -39,7 +39,6 @@ require([
 		  		success : function(data) {
 		  			//这里的数据是jsonArray
 		  			for(var i=0;i<data.length;i++){
-		  				alert(data[i]);
 		  				showNews(data[i]);
 		  				
 		  			}
@@ -69,24 +68,32 @@ require([
 
   		      //类似于Map
   		    var attribute = {
-  		    		  标题: "<a href='"+news.webUrl+"' target=_blank>"+news.title+"</a>",
+  		    		  图片: "<img src="+news.picUrl+"></img>",
   		    		  关键字: news.keyWord,
   		    		  新闻来源:news.origin,
-  		    		  时间:news.pubDate
+  		    		  时间:news.pubDate,
+  		    		  PC端查看:"<a href = '"+news.webUrl+"' target = _blanket>点此跳转</a>",
+  		    		  手机端查看:"<a href = '"+news.mobileUrl+"' target = _blanket>点此跳转</a>"
   		      };
   		    var template = {
   		    		 title: news.title,
    		            content: [{
    		              type: "fields",
    		              fieldInfos: [{
-   		                fieldName: "标题",
+   		                fieldName: "图片",
    		              }, {
    		                fieldName: "关键字"
    		              }, {
    		                fieldName: "新闻来源"
    		              }, {
    		                fieldName: "时间"
-   		              }]
+   		              },
+   		              {
+   		            	fieldName: "PC端查看"
+     		          },{
+     		        	 fieldName: "手机端查看"  
+     		          }
+   		              ]
    		            }]
   		      };
   		    var pointGraphic = new Graphic({

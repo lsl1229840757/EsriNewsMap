@@ -1,6 +1,7 @@
 package com.esri.test;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -10,13 +11,11 @@ import org.junit.Test;
 import com.esri.dao.daoImpl.NewsDaoImpl;
 import com.esri.entity.News;
 
-public class testHibernate {
+public class testJ {
 
 	@Test
 	public void test() throws ParseException {
 		NewsDaoImpl nd = new NewsDaoImpl();
-		List<News> news = nd.findNewsByPubDate(new Date());
-		System.out.println(news);
 	}
 	@Test
 	public void test2() {
@@ -27,4 +26,10 @@ public class testHibernate {
 		System.out.println(b);
 	}
 
+	@Test
+	public void test4() {
+		//System.out.println(LocalDateTime.now()); hibernate²»Ö§³Ö
+		System.out.println(new java.sql.Date(new Date().getTime()));
+	}
+	
 }
