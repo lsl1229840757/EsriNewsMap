@@ -1,6 +1,7 @@
 package com.esri.action;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -18,12 +19,6 @@ import com.esri.dao.daoImpl.NewsDaoImpl;
 import com.esri.entity.News;
 import com.esri.service.NewsService;
 import com.opensymphony.xwork2.ActionSupport;
-/**
- * 
- * @author ������
- * ������ʾaction
- *
- */
 @Scope("prototype")
 @Repository
 public class NewsAction extends ActionSupport {
@@ -65,5 +60,13 @@ public class NewsAction extends ActionSupport {
 		
 	}
 	
+	public void executeAjax() {
+		JSONArray ja = ns.statistics();
+		try {
+			ServletActionContext.getResponse().getWriter().print(ja);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

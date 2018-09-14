@@ -2,13 +2,18 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<!-- 配置开发者模式，修改热部署 -->
-	<!-- <constant name="struts.devMode" value="true"></constant> -->
+	<constant name="struts.devMode" value="true"></constant>
 	<constant name="struts.enable.DynamicMethodInvocation"
 		value="true" />
 	<package name="root" extends="struts-default" namespace="/esri">
 		<interceptors>
+			<!-- 非法登陆拦截器 -->
+			<!-- <interceptor name="authority"
+				class="com.esri.interceptor.AuthorityInterceptor">
+			</interceptor> -->
 			<interceptor-stack name="mydefault">
 				<interceptor-ref name="defaultStack" />
+				<!-- <interceptor-ref name="authority"></interceptor-ref> -->
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="mydefault" />
@@ -24,11 +29,17 @@
 			<result name="input">user/userInformation.jsp</result>
 		</action> 
 
+		<action name="statistics">
+			<result>../afterlogin/statistics.jsp</result>
+		</action>
+
 		<!-- 新闻action -->
 		<action name="map" class="com.esri.action.UserAction" method="entermap">
 			<result name="success">../newsMap/map2.jsp</result>
 		</action> 
-		
+		<!-- 新闻action -->
+		<action name="exe" class="com.esri.action.NewsAction" method="executeAjax">
+		</action> 
 		<action name="enterchange" class="com.esri.action.UserAction"
 			method="enterChange">
 			<result name="success">../user/changeInformation.jsp</result>
@@ -57,7 +68,6 @@
 		<action name="LoginPage" class="com.esri.action.UserAction" method="enterLogin">
 			<result name="success">/login.jsp</result>			
 		</action>
-	
 		<!-- 用户登陆action -->
 		<action name="login" class="com.esri.action.UserAction"
 			method="login">
@@ -65,9 +75,9 @@
 			<result name="input">/login.jsp</result>
 			<result name="error">/login.jsp</result>
 		</action>
-		
 		<action name="ajax" class="com.esri.action.UserAction"
 			method="excuteAjax">
+			
 		</action>
 		
 		<action name="ajaxImage" class="com.esri.action.CreateImageAction"

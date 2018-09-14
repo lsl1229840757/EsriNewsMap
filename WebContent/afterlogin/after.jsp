@@ -6,7 +6,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css/normalize.css" />
 <script src="https://js.arcgis.com/4.8/"></script>
-<!--CSS RESET-->
 
 <link rel="stylesheet" href="${pageContext.request.contextPath }/afterlogin/css/style.css">
 <link rel="stylesheet"
@@ -15,7 +14,6 @@
 	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/css/star.css">
-
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/js/shownews.js"></script>
 <script type="text/javascript">
@@ -81,6 +79,9 @@
 			<a href="../esri/enterchange.action"
 				class="btn btn-primary btn-lg active btn-sm glyphicon glyphicon-link"
 				role="button">修改信息</a>
+			<a href="../esri/statistics"
+				class="btn btn-success"
+				role="button" target="_blanket">新闻数据统计</a>
 		</div>
 
 		<div id="viewDiv" class="right">
@@ -88,7 +89,6 @@
 		</div>
 
 		<div id="analysis" class="right">
-			<h1>xxxxxxxxxxxx</h1>
 		</div>
 
 	</div>

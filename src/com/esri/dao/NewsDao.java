@@ -17,7 +17,9 @@ public interface NewsDao {
 	//当前新闻
 	public List<News> findRecentNews();
 	
-	public List<HistoryNews> findNewsByTime(Date now);
-	
-	
+	public List<HistoryNews> findHistoryNewsByTime(Date now);
+
+	public int findHistoryNewsCountByTime(Date now);
+
+	public int findRecentNewsCount(Date now);
 }

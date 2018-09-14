@@ -6,18 +6,19 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.hibernate.SessionFactory;
+import org.json.JSONArray;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
 import com.esri.service.NewsService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:applicationContext.xml"})
 
-public class UserDaoImplTest {
+public class TestJunit {
 
 	@Resource
 	private NewsService news;
@@ -44,4 +45,29 @@ public class UserDaoImplTest {
 		}
 	}
 	
+	@Test
+	public void test3() {
+		List<HistoryNews> findNewsByTime = news.findHistoryNewsByTime(new Date());
+		System.out.println(findNewsByTime.size());
+		for(HistoryNews h:findNewsByTime) {
+			System.out.println(h);
+		}
+	}
+	@Test
+	public void test4() {
+		int a = news.findHistoryNewsCountByTime(new Date());
+		System.out.println(a);
+	}
+	@Test
+	public void test5() {
+		int a = news.findRecentNewsCount(new Date());
+		System.out.println(a);
+	}
+
+	@Test
+	public void test6() {
+		JSONArray ja = news.statistics();
+		System.out.println(ja);
+	}
 }
+

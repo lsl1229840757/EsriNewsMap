@@ -3,6 +3,8 @@ package com.esri.service;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
 
@@ -17,6 +19,13 @@ public interface NewsService {
 	//当前新闻
 	public List<News> findRecentNews();
 	
-	public List<HistoryNews> findNewsByTime(Date now);
+	public List<HistoryNews> findHistoryNewsByTime(Date now);
+
+	public int findHistoryNewsCountByTime(Date now);
 	
+	public int findRecentNewsCount(Date now);
+	/**
+	 * @return 返回一个jsonarry里面有10天的新闻数据和其对应的日期
+	 */
+	public JSONArray statistics();
 }

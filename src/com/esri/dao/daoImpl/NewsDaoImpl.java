@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import com.esri.dao.NewsDao;
 import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
+import com.esri.util.CalenderTools;
 import com.esri.util.GetTime;
 
 /**
@@ -62,14 +63,29 @@ public class NewsDaoImpl implements NewsDao {
 		List<News> newsList = query.list();
 		return newsList;
 	}
+	
+	public int findRecentNewsCount(Date now) {
+		Session currentSession = sessionfactory.getCurrentSession();
+		String hql = "select count(h.id) from News h where h.pubDate between "+CalenderTools.getYesterDay(now)+" and "+CalenderTools.getNowTime(now);
+		Query query = currentSession.createQuery(hql);
+		return ((Number) query.uniqueResult()).intValue();
+	}
 
 	@Override
-	public List<HistoryNews> findNewsByTime(Date now) {
+	public List<HistoryNews> findHistoryNewsByTime(Date now) {
 		Session currentSession = sessionfactory.getCurrentSession();
-		String hql = "from News news where news.pubDate between '"+GetTime.getStatetime(now,-7)+"'  and '"+GetTime.getStatetime(now, 0)+"' ";
+		String hql = "from HistoryNews news where news.pubDate between "+CalenderTools.getYesterDay(now)+" and "+ CalenderTools.getNowTime(now);
 		Query query = currentSession.createQuery(hql);
 		List<HistoryNews> list = query.list();
 		return list;
+	}
+
+	@Override
+	public int findHistoryNewsCountByTime(Date now) {
+		Session currentSession = sessionfactory.getCurrentSession();
+		String hql = "select count(h.id) from HistoryNews h where h.pubDate between "+CalenderTools.getYesterDay(now)+" and "+CalenderTools.getNowTime(now);
+		Query query = currentSession.createQuery(hql);
+		return ((Number) query.uniqueResult()).intValue();
 	}
 
 }
