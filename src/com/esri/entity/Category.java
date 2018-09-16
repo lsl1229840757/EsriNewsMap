@@ -5,12 +5,8 @@ import java.util.Set;
 
 public class Category {
 
-	//新闻类别
 	private String category;
-	//新闻
 	private Set<News> news = new HashSet<News>();
-	//用户
-	//private User user = new User();
 	private Set<User> users = new HashSet<User>();
 	public String getCategory() {
 		return category;

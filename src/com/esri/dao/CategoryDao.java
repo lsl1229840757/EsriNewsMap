@@ -6,7 +6,6 @@ import com.esri.entity.Category;
 
 public interface CategoryDao {
 
-	//²éÑ¯È«²¿
 	public List<Category> findAll();
 	
 }

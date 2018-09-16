@@ -14,7 +14,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
+import com.esri.entity.User;
 import com.esri.service.NewsService;
+import com.esri.service.UserService;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:applicationContext.xml"})
 
@@ -23,6 +25,9 @@ public class TestJunit {
 	@Resource
 	private NewsService news;
 
+	@Resource
+	private UserService us;
+	
 	
 	@Test
 	public void testfind() {
@@ -34,6 +39,13 @@ public class TestJunit {
 		Date date = new Date(mills*1000);
 		System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(date));
 		System.out.println(list);
+	}
+	
+	@Test
+	public void testChange() {
+		List<User> list = us.findAll();
+		System.out.println(list);
+		
 	}
 	@Test
 	public void testfind2() {
@@ -68,6 +80,11 @@ public class TestJunit {
 	public void test6() {
 		JSONArray ja = news.statistics();
 		System.out.println(ja);
+	}
+	@Test
+	public void test7() {
+		User user = us.findUserByUserName("admin111");
+		System.out.println(user);
 	}
 }
 

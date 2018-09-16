@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
 <hibernate-mapping default-access="property" package="com.esri.entity">
-	<class name="User" table="user">
-		<id name="username" column="USERNAME" type="java.lang.String">
+	<class name="User" table="public.user">
+		<id name="username" column="username" type="java.lang.String">
 			<generator class="assigned"/>
 		</id>
-		<property name="password" column="PASSWORD" />
-		<property name="name" column="NAME" />
-		<property name="age" column="AGE" />
-		<property name="gender" column="GENDER" />
-		<!-- 在一对多的一段使用set进行关联关系的配置
-			inverse=true 表示将关联关系的控制管理交给对方管理
-			通常关联关系的管理交给多的一方进行控制，因为多的一方具有外键，管理关联关系更加方便有效
-		 -->
-		<set name="interestCategory" table="middle">
-			<key column="username"/>
-			<many-to-many class="Category" column="category"/>
-		</set> 
+		<property name="password" column="password" />
+		<property name="name" column="name" />
+		<property name="age" column="age" />
+		<property name="gender" column="gender" />
 	</class>
 </hibernate-mapping>
