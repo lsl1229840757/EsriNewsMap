@@ -1,8 +1,6 @@
 package com.esri.action;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,8 +12,6 @@ import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-import com.esri.dao.NewsDao;
-import com.esri.dao.daoImpl.NewsDaoImpl;
 import com.esri.entity.News;
 import com.esri.service.NewsService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,9 +24,6 @@ public class NewsAction extends ActionSupport {
 	private NewsService ns;
 	
 	public HttpServletRequest req = ServletActionContext.getRequest();
-	/**
-	 *��һ�γ�ʼ������ 
-	 */
 	public void initiateNews() {
 		System.out.println("���ʵ�ǰaction");
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");

@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import com.esri.dao.daoImpl.NewsDaoImpl;
 import com.esri.entity.News;
+import com.esri.util.CalenderTools;
 
 public class testJ {
 
@@ -31,5 +32,11 @@ public class testJ {
 		//System.out.println(LocalDateTime.now()); hibernate²»Ö§³Ö
 		System.out.println(new java.sql.Date(new Date().getTime()));
 	}
-	
+	@Test
+	public void test8() throws ParseException {
+		System.out.println(CalenderTools.formatNowDay(new Date()));
+		System.out.println(CalenderTools.formatNowMonth(new Date()));
+		System.out.println(CalenderTools.getYesterDay(new Date()));
+		System.out.println(new Date((long)CalenderTools.getNowMonthEnd(new Date())*1000));
+	}
 }

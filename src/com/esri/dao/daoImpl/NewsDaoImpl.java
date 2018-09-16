@@ -66,7 +66,7 @@ public class NewsDaoImpl implements NewsDao {
 	
 	public int findRecentNewsCount(Date now) {
 		Session currentSession = sessionfactory.getCurrentSession();
-		String hql = "select count(h.id) from News h where h.pubDate between "+CalenderTools.getYesterDay(now)+" and "+CalenderTools.getNowTime(now);
+		String hql = "select count(h.id) from News h";
 		Query query = currentSession.createQuery(hql);
 		return ((Number) query.uniqueResult()).intValue();
 	}
@@ -74,7 +74,7 @@ public class NewsDaoImpl implements NewsDao {
 	@Override
 	public List<HistoryNews> findHistoryNewsByTime(Date now) {
 		Session currentSession = sessionfactory.getCurrentSession();
-		String hql = "from HistoryNews news where news.pubDate between "+CalenderTools.getYesterDay(now)+" and "+ CalenderTools.getNowTime(now);
+		String hql = "from HistoryNews news where news.pubDate between "+CalenderTools.getNowDay(now)+" and "+ CalenderTools.getTomorrow(now);
 		Query query = currentSession.createQuery(hql);
 		List<HistoryNews> list = query.list();
 		return list;
@@ -83,7 +83,7 @@ public class NewsDaoImpl implements NewsDao {
 	@Override
 	public int findHistoryNewsCountByTime(Date now) {
 		Session currentSession = sessionfactory.getCurrentSession();
-		String hql = "select count(h.id) from HistoryNews h where h.pubDate between "+CalenderTools.getYesterDay(now)+" and "+CalenderTools.getNowTime(now);
+		String hql = "select count(h.id) from HistoryNews h where h.pubDate between "+CalenderTools.getNowDay(now)+" and "+ CalenderTools.getTomorrow(now);
 		Query query = currentSession.createQuery(hql);
 		return ((Number) query.uniqueResult()).intValue();
 	}

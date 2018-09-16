@@ -1,5 +1,6 @@
 package com.esri.test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
 import com.esri.service.NewsService;
+import com.esri.util.CalenderTools;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:applicationContext.xml"})
 
@@ -68,6 +70,15 @@ public class TestJunit {
 	public void test6() {
 		JSONArray ja = news.statistics();
 		System.out.println(ja);
+	}
+	
+	@Test
+	public void test7() throws ParseException {
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-dd-MM");
+		String format = sf.format(new Date());
+		System.out.println(format);
+		System.out.println(new Date().getTime());
+		System.out.println(sf.parse(format));
 	}
 }
 
