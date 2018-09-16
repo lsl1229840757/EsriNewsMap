@@ -1,5 +1,6 @@
 package com.esri.test;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -81,8 +82,17 @@ public class TestJunit {
 		JSONArray ja = news.statistics();
 		System.out.println(ja);
 	}
+	
 	@Test
-	public void test7() {
+	public void test7() throws ParseException {
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-dd-MM");
+		String format = sf.format(new Date());
+		System.out.println(format);
+		System.out.println(new Date().getTime());
+		System.out.println(sf.parse(format));
+	}
+	@Test
+	public void test8() {
 		User user = us.findUserByUserName("admin111");
 		System.out.println(user);
 	}
