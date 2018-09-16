@@ -17,11 +17,7 @@ import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
 import com.esri.entity.User;
 import com.esri.service.NewsService;
-<<<<<<< HEAD
-import com.esri.util.CalenderTools;
-=======
 import com.esri.service.UserService;
->>>>>>> 3e0d1ab709d27445e0c504f34c1d77b03d209404
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:applicationContext.xml"})
 
@@ -86,7 +82,6 @@ public class TestJunit {
 		JSONArray ja = news.statistics();
 		System.out.println(ja);
 	}
-<<<<<<< HEAD
 	
 	@Test
 	public void test7() throws ParseException {
@@ -95,12 +90,11 @@ public class TestJunit {
 		System.out.println(format);
 		System.out.println(new Date().getTime());
 		System.out.println(sf.parse(format));
-=======
+	}
 	@Test
-	public void test7() {
+	public void test8() {
 		User user = us.findUserByUserName("admin111");
 		System.out.println(user);
->>>>>>> 3e0d1ab709d27445e0c504f34c1d77b03d209404
 	}
 }
 

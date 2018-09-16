@@ -24,10 +24,7 @@ public class NewsAction extends ActionSupport {
 	private NewsService ns;
 	
 	public HttpServletRequest req = ServletActionContext.getRequest();
-<<<<<<< HEAD
-=======
-
->>>>>>> 3e0d1ab709d27445e0c504f34c1d77b03d209404
+	
 	public void initiateNews() {
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
