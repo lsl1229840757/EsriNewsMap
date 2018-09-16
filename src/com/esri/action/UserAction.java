@@ -16,7 +16,6 @@ import com.esri.service.UserService;
 import com.esri.util.UserGet;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-//ÅäÖÃ¶àÀı
 @Scope("prototype")
 
 @Repository
@@ -30,10 +29,6 @@ public class UserAction extends ActionSupport {
 	private Map<String,Object> session = ActionContext.getContext().getSession();
 	
 	
-	/**
-	 * ÀîËÉÁ®ĞŞ¸Ä£ºÓÃÒ»¸öÀàµÄ·½·¨À´ÊµÏÖ¿ÕÖµµÄĞ£Ñé,ÕâÀïÓÃµÃ¸ü¶àµÄ»°£¬¿ÉÒÔ¿¼ÂÇÓÃ¹¤¾ßÀàÀ´ÊµÏÖ
-	 * @return ¿Õ¾Í·µ»Øtrue£¬²»¿Õ¾Í·µ»Øfalse
-	 */
 	public boolean checknull(String str) {
 		if(str==null||"".equals(str)) {
 			return true;
@@ -50,7 +45,6 @@ public class UserAction extends ActionSupport {
 	private String checkCode2 = CreateImageAction.checkCode;
 
 	private String checkCode;
-	// ×¢²áÓÃ
 	private String password;
 
 	static String primitive;
@@ -101,11 +95,6 @@ public class UserAction extends ActionSupport {
 	public String enterLogin() {
 		return super.SUCCESS;
 	}
-	/**
-	 * µÇÂ½½çÃæ
-	 * 
-	 * @return
-	 */
 	public String login() {
 		primitive = user.getPassword();
 		System.out.println(primitive);
@@ -119,34 +108,24 @@ public class UserAction extends ActionSupport {
 		System.out.println(checkCode);
 		System.out.println(checkCode2);
 
-		// ÓÃ»§Ãû²»ÄÜÎª¿Õ
 		if (checknull(user.getUsername())) {
-			super.addFieldError("username", "ÓÃ»§Ãû²»ÄÜÎª¿Õ!");
+			super.addFieldError("username", "ç”¨æˆ·åä¸èƒ½ä¸ºç©º!");
 		}
-		// ÃÜÂë²»ÄÜÎª¿Õ
 		if (checknull(user.getPassword())) {
-			super.addFieldError("password", "ÃÜÂë²»ÄÜÎª¿Õ!");
+			super.addFieldError("password", "å¯†ç ä¸èƒ½ä¸ºç©º!");
 		}
-		// ÑéÖ¤Âë²»ÄÜÎª¿Õ
 		if (checknull(checkCode)) {
-			super.addFieldError("checkCode", "ÑéÖ¤Âë²»ÄÜÎª¿Õ!");
+			super.addFieldError("checkCode", "éªŒè¯ç ä¸èƒ½ä¸ºç©º!");
 		}
-		// ÑéÖ¤ÂëÊäÈëÊÇ·ñÕıÈ·
 		if (!checkCode.toLowerCase().equals(checkCode2.toLowerCase())) {
-			super.addFieldError("checkCode", "ÑéÖ¤ÂëÊäÈë´íÎó!");
+			super.addFieldError("checkCode", "éªŒè¯ç è¾“å…¥é”™è¯¯!");
 		}
-		// ¼ìÑéÓÃ»§ÃÜÂëºÍÓÃ»§ÃûÊÇ·ñÆ¥Åä
 		if (!us.findLogin(user)) {
 			System.out.println(user);
-			super.addFieldError("username", "ÓÃ»§Ãû»òÃÜÂë´íÎó!!");
+			super.addFieldError("username", "ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯!!");
 		}
 	}
 
-	
-	/**
-	 * ÓÃ»§×¢²á
-	 * 
-	 */
 	public void excuteAjax() {
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
@@ -154,12 +133,11 @@ public class UserAction extends ActionSupport {
 		System.out.println(username);
 		Map<String, String> map = new HashMap<String, String>();
 
-		// ¼ìÑéÓÃ»§ÊÇ·ñÒÑ±»×¢²á
 		if (us.findUserByUserName(username) != null) {
-			map.put("username", "¸ÃÓÃ»§ÃûÒÑ¾­±»Ê¹ÓÃ!");
+			map.put("username", "è¯¥ç”¨æˆ·åå·²ç»è¢«ä½¿ç”¨!");
 			map.put("error", "1");
 		}else {
-			map.put("username", "¸ÃÓÃ»§ÃûÎ´±»Ê¹ÓÃ!");
+			map.put("username", "è¯¥ç”¨æˆ·åæœªè¢«ä½¿ç”¨!");
 			map.put("error", "0");
 		}
 		JSONObject json = new JSONObject(map);
@@ -177,11 +155,8 @@ public class UserAction extends ActionSupport {
 		user.setPassword(password);
 		user.setAge(Integer.parseInt(this.age));
 		us.add(user);
-		/**
-		 * ÀîËÉÁ®ĞŞ¸Ä£º×¢²á³É¹¦Ö®ºóÒ²Òª°ÑÓÃ»§´æµ½sessionÖĞ¡£
-		 */
 		session.put("user", user);
-		session.put("msg", "×¢²á³É¹¦!");
+		session.put("msg", "æ³¨å†ŒæˆåŠŸ!");
 		return super.SUCCESS;
 	}
 
@@ -189,72 +164,52 @@ public class UserAction extends ActionSupport {
 		System.out.println(checkCode);
 		System.out.println(checkCode2);
 
-		// ÓÃ»§Ãû²»ÄÜÎª¿Õ
 		if (checknull(user.getUsername())) {
-			super.addFieldError("username", "ÓÃ»§Ãû²»ÄÜÎª¿Õ!");
+			super.addFieldError("username", "ç”¨æˆ·åä¸èƒ½ä¸ºç©º!");
 		}
-		// êÇ³Æ²»ÄÜÎª¿Õ
 		if (checknull(user.getName())) {
-			super.addFieldError("name", "êÇ³Æ²»ÄÜÎª¿Õ!");
+			super.addFieldError("name", "æ˜µç§°ä¸èƒ½ä¸ºç©º!");
 		}
-		// ÄêÁä²»ÄÜÎª¿Õ
 		if (checknull(this.age)) {
-			super.addFieldError("age", "ÄêÁä²»ÄÜÎª¿Õ!");
+			super.addFieldError("age", "å¹´é¾„ä¸èƒ½ä¸ºç©º!");
 		}
-		// ÄêÁäÓ¦¸ÃÊÇÊı×Ö(0~100)
 		try {
 			int age = Integer.parseInt(this.age);
 			if (age > 100 || age < 1) {
-				super.addFieldError("age", "ÄêÁä±ØĞëÔÚ0~100Ö®¼ä!");
+				super.addFieldError("age", "å¹´é¾„å¿…é¡»åœ¨0~100ä¹‹é—´!");
 			}
 		} catch (NumberFormatException e) {
-			super.addFieldError("age", "ÊäÈë¸ñÊ½²»ÕıÈ·!");
+			super.addFieldError("age", "è¾“å…¥æ ¼å¼ä¸æ­£ç¡®!");
 		}
 
 		System.out.println(password);
 		System.out.println(password2);
-		// ÃÜÂë²»ÄÜÎª¿Õ
 		if (checknull(this.password)) {
-			super.addFieldError("password", "ÃÜÂë²»ÄÜÎª¿Õ!");
+			super.addFieldError("password", "å¯†ç ä¸èƒ½ä¸ºç©º!");
 		}
-		// È·ÈÏÃÜÂë²»ÄÜÎª¿Õ
 		if (checknull(this.password2)) {
-			super.addFieldError("password2", "ÃÜÂë²»ÄÜÎª¿Õ!");
+			super.addFieldError("password2", "å¯†ç ä¸èƒ½ä¸ºç©º!");
 		}
-		// Á½´ÎÃÜÂëÊÇ·ñÒ»ÖÂ
 		if (!password.equals(password2)) {
-			super.addFieldError("password", "Á½´ÎÃÜÂëÊäÈë²»Ò»ÖÂ!");
+			super.addFieldError("password", "ä¸¤æ¬¡å¯†ç è¾“å…¥ä¸ä¸€è‡´!");
 		}
-		// ÑéÖ¤Âë²»ÄÜÎª¿Õ
 		if (checknull(checkCode)) {
-			super.addFieldError("checkCode", "ÑéÖ¤Âë²»ÄÜÎª¿Õ!");
+			super.addFieldError("checkCode", "éªŒè¯ç ä¸èƒ½ä¸ºç©º!");
 		}
-		// ÑéÖ¤ÂëÊäÈëÊÇ·ñÕıÈ·
 		if (!checkCode.toLowerCase().equals(checkCode2.toLowerCase())) {
-			super.addFieldError("checkCode", "ÑéÖ¤ÂëÊäÈë´íÎó!");
+			super.addFieldError("checkCode", "éªŒè¯ç è¾“å…¥é”™è¯¯!");
 		}
 
 	}
 
-	/**
-	 * ÓÃ»§ĞÅÏ¢½çÃæ
-	 * 
-	 * @return
-	 */
 	public String userInfo() {
 		return super.SUCCESS;
 	}
 
-	/**
-	 * ½øÈëĞŞ¸ÄĞÅÏ¢½çÃæ
-	 */
 	public String enterChange() {
 		return super.SUCCESS;
 	}
 
-	/**
-	 * ĞŞ¸ÄĞÅÏ¢
-	 */
 	public String changeInfo() {
 		User userold = UserGet.getUser(session);
 		if(userold!=null&&userold.getPassword()!=null&&userold.getUsername()!=null) {
@@ -273,30 +228,25 @@ public class UserAction extends ActionSupport {
 		System.out.println(checkCode);
 		System.out.println(checkCode2);
 
-		// êÇ³Æ²»ÄÜÎª¿Õ
 		if (checknull(user.getName())) {
-			super.addFieldError("name", "êÇ³Æ²»ÄÜÎª¿Õ!");
+			super.addFieldError("name", "æ˜µç§°ä¸èƒ½ä¸ºç©º!");
 		}
-		// ÄêÁä²»ÄÜÎª¿Õ
 		if (checknull(this.age)) {
-			super.addFieldError("age", "ÄêÁä²»ÄÜÎª¿Õ!");
+			super.addFieldError("age", "å¹´é¾„ä¸èƒ½ä¸ºç©º!");
 		}
-		// ÄêÁäÓ¦¸ÃÊÇÊı×Ö(0~100)
 		try {
 			int age = Integer.parseInt(this.age);
 			if (age > 100 || age < 1) {
-				super.addFieldError("age", "ÄêÁä±ØĞëÔÚ0~100Ö®¼ä!");
+				super.addFieldError("age", "å¹´é¾„å¿…é¡»åœ¨0~100ä¹‹é—´!");
 			}
 		} catch (NumberFormatException e) {
-			super.addFieldError("age", "ÊäÈë¸ñÊ½²»ÕıÈ·!");
+			super.addFieldError("age", "è¾“å…¥æ ¼å¼ä¸æ­£ç¡®!");
 		}
-		// ÑéÖ¤Âë²»ÄÜÎª¿Õ
 		if (checknull(checkCode)) {
-			super.addFieldError("checkCode", "ÑéÖ¤Âë²»ÄÜÎª¿Õ!");
+			super.addFieldError("checkCode", "éªŒè¯ç ä¸èƒ½ä¸ºç©º!");
 		}
-		// ÑéÖ¤ÂëÊäÈëÊÇ·ñÕıÈ·
 		if (!checkCode.toLowerCase().equals(checkCode2.toLowerCase())) {
-			super.addFieldError("checkCode", "ÑéÖ¤ÂëÊäÈë´íÎó!");
+			super.addFieldError("checkCode", "éªŒè¯ç è¾“å…¥é”™è¯¯!");
 		}
 	}
 	

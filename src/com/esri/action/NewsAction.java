@@ -28,14 +28,10 @@ public class NewsAction extends ActionSupport {
 	private NewsService ns;
 	
 	public HttpServletRequest req = ServletActionContext.getRequest();
-	/**
-	 *ï¿½ï¿½Ò»ï¿½Î³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
-	 */
+
 	public void initiateNews() {
-		System.out.println("ï¿½ï¿½ï¿½Êµï¿½Ç°action");
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
-			System.out.println("Ç°¶Ë·¢ÐÅÏ¢ÁË");
 			List<News> news = ns.findRecentNews();
 			JSONArray ja = new JSONArray();
 			for(News n:news) {

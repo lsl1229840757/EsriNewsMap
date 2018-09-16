@@ -17,30 +17,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.json.JSONObject;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Repository;
 
 import com.opensymphony.xwork2.ActionSupport;
-//ÅäÖÃ¶àÀı
-@Scope("prototype")
 
-@Repository
 public class CreateImageAction extends ActionSupport{
 	
-	public CreateImageAction() {
-		super();
-	}
+	public static String checkCode;
 
 	public HttpServletRequest req = ServletActionContext.getRequest();
 	
-	private static final long serialVersionUID = 1L;
-
-	public static String checkCode;
-
 	private ByteArrayInputStream inputStream;
-	//ÑéÖ¤Âë³¤
+	//éªŒè¯ç é•¿
 	private static int length = 60;
-	//ÑéÖ¤Âë¿í
+	//éªŒè¯ç å®½
 	private static int width = 20;
 	public ByteArrayInputStream getInputStream() {
 		return inputStream;
@@ -50,7 +39,7 @@ public class CreateImageAction extends ActionSupport{
 	}
 	
 	/**
-	 * ²úÉúËÄÎ»Ëæ»úÊı
+	 * äº§ç”Ÿå››ä½éšæœºæ•°
 	 * @return
 	 */
 	private String createRandom() {
@@ -63,7 +52,7 @@ public class CreateImageAction extends ActionSupport{
 		return new String(rands);
 	}
 	/**
-	 * ²úÉú±³¾°
+	 * äº§ç”ŸèƒŒæ™¯
 	 * @param graphic
 	 */
 	private void drawBg(Graphics graphic) {
@@ -83,7 +72,7 @@ public class CreateImageAction extends ActionSupport{
 	private void drawPicture(Graphics graphic,String rands) {
 		graphic.setColor(Color.BLACK);
 		graphic.setFont(new Font(null,Font.BOLD|Font.ITALIC,18));
-		 // ÔÚ²»Í¬µÄ¸ß¶ÈÉÏÊä³öÑéÖ¤ÂëµÄÃ¿¸ö×Ö·û  
+		 // åœ¨ä¸åŒçš„é«˜åº¦ä¸Šè¾“å‡ºéªŒè¯ç çš„æ¯ä¸ªå­—ç¬¦  
 		graphic.drawString("" + rands.charAt(0), 1, 17);  
 		graphic.drawString("" + rands.charAt(1), 16, 15);  
 		graphic.drawString("" + rands.charAt(2), 31, 18);  
@@ -92,7 +81,7 @@ public class CreateImageAction extends ActionSupport{
 	
 	public String draw() throws IOException {
 		HttpServletResponse response = ServletActionContext.getResponse();  
-        // ÉèÖÃä¯ÀÀÆ÷²»Òª»º´æ´ËÍ¼Æ¬ 
+        // è®¾ç½®æµè§ˆå™¨ä¸è¦ç¼“å­˜æ­¤å›¾ç‰‡ 
         response.setHeader("Pragma", "no-cache");  
         response.setHeader("Cache-Control", "no-cache");  
         response.setDateHeader("Expires", 0);  
@@ -100,10 +89,10 @@ public class CreateImageAction extends ActionSupport{
         BufferedImage image = new BufferedImage(length, width,  
                  BufferedImage.TYPE_INT_RGB);  
         Graphics g = image.getGraphics();  
-        // ²úÉúÍ¼Ïñ  
+        // äº§ç”Ÿå›¾åƒ  
         drawBg(g);  
         drawPicture(g, rands);  
-        // ½áÊøÍ¼Ïñ µÄ»æÖÆ ¹ı³Ì£¬ Íê³ÉÍ¼Ïñ  
+        // ç»“æŸå›¾åƒ çš„ç»˜åˆ¶ è¿‡ç¨‹ï¼Œ å®Œæˆå›¾åƒ  
         g.dispose();  
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();  
         ImageIO.write(image, "jpeg", outputStream);  
@@ -115,24 +104,23 @@ public class CreateImageAction extends ActionSupport{
         outputStream.close();  
         return super.SUCCESS;
 	}
-	
 	/**
-	 * Ìí¼ÓajaxÊµÊ±ÅĞ¶ÏÑéÖ¤ÂëÊÇ·ñÕıÈ·
+	 * æ·»åŠ ajaxå®æ—¶åˆ¤æ–­éªŒè¯ç æ˜¯å¦æ­£ç¡®
 	 */
 	public void executeAjax() {
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
 		String checkCod = req.getParameter("checkCode");
-		
+		System.out.println(checkCod);
 		Map<String,String> map = new HashMap<String,String>();
 		if(checkCod.toLowerCase().equals(checkCode.toLowerCase())) {
-			map.put("info", "ÑéÖ¤ÂëÊäÈëÕıÈ·!");
+			map.put("info", "éªŒè¯ç è¾“å…¥æ­£ç¡®!");
 			map.put("flag", "true");
-			System.out.println("ÑéÖ¤ÂëÊäÈëÕıÈ·");
+			System.out.println("éªŒè¯ç è¾“å…¥æ­£ç¡®");
 		}else {
-			map.put("info", "ÑéÖ¤ÂëÊäÈë´íÎó!");
+			map.put("info", "éªŒè¯ç è¾“å…¥é”™è¯¯!");
 			map.put("flag", "false");
-			System.out.println("ÑéÖ¤ÂëÊäÈë´íÎó!");
+			System.out.println("éªŒè¯ç è¾“å…¥é”™è¯¯!");
 		}
 		JSONObject json = new JSONObject(map);
 		try {

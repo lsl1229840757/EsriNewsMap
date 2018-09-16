@@ -11,37 +11,24 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
-/**
- * µÇÂ½×¢²áÀ¹½ØÆ÷
- * 
- * @author ºúÉ­
- *
- */
 @Repository
 @SuppressWarnings("serial")
 public class AuthorityInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
-		// È¡µÃActionContextÊ¾Àý
 		ActionContext ctx = invocation.getInvocationContext();
 
 		Map session = ctx.getSession();
 
-		/**
-		 *ÀîËÉÁ®ÐÞ¸Ä£º¿¼ÂÇ°²È«ÐÔÎÊÌâ,Ò»°ã²»ÒªÖ±½Ó½«ÀàÐÍÇ¿ÖÆ×ª»»
-		 */
 		/*User user = (User) session.get("user");*/
 		
 		User user = UserGet.getUser(session);
 		if (user != null) {
-			System.out.println("À¹½ØÆ÷Í¨¹ý!");
 			return invocation.invoke();
 		}
 		
-		System.out.println("µÇÂ½À¹½Ø");
-		// ·ÅÈëÊý¾Ý
-		ctx.put("tip", "ÇëÏÈµÇÂ½");
+		ctx.put("tip", "è¿˜æ²¡æœ‰ç™»é™†...");
 		return Action.LOGIN;
 	}
 

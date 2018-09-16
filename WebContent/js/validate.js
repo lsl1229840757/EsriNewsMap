@@ -52,7 +52,7 @@ function refresh() {
 function validateAge(age, blankId) {
 	var val = $("#" + age).val();
 	var regex = /^(?:[1-9]?\d|100)$/;
-	if (!val.match(regex)) {
+	if (!regex.test(val)) {
 		$("#" + blankId).html("年龄应是0~100之间的整数!");
 		return false;
 	}
@@ -76,7 +76,7 @@ function pwdComplex()// 用于判断密码强度的
 	{ // 至少六个字符
 		for (var i = 0; i < regxs.length; i++) // 遍历所有正则表达式，检测用户输入的密码符合哪些正则表达式，如果符合则强度+1
 		{
-			if (val.match(regxs[i])) {
+			if (regxs[i].test(val)) {
 				sec++;
 			}
 		}
