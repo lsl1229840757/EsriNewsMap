@@ -4,18 +4,22 @@
 <html>
 <head>
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css/normalize.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/afterlogin/css/normalize.css" />
 <script src="https://js.arcgis.com/4.8/"></script>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath }/afterlogin/css/style.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/afterlogin/css/style.css">
 <link rel="stylesheet"
 	href="https://js.arcgis.com/4.8/esri/css/main.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/css/star.css">
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/jquery-3.3.1.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/js/shownews.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/jquery-3.3.1.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/js/shownews.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var nav = $('nav'), menu = $('nav h1'), main = $('main'), open = false, hover = false;
@@ -41,21 +45,28 @@
 		$('ul li').click(function() {
 			idx = $(this).index('ul li');
 			$('.right').eq(idx).show();
-			
+
 			$('.right').not($('.right').eq(idx)).hide();
-			if(idx==1){
+			if (idx == 1) {
 				$('#canvas').hide();
-			}else{
+			} else {
 				$('#canvas').show();
 			}
 		})
 	});
 </script>
+<style type="text/css">
+	.info{
+		font-size: 25px;
+		color: white;
+		margin-bottom: 10px;
+	}
+	
+</style>
 </head>
 <body>
 
-	<canvas id="canvas">
-	</canvas>
+	<canvas id="canvas"> </canvas>
 	<div class="container">
 		<nav class="menu-activea">
 		<h1>MENU</h1>
@@ -65,31 +76,35 @@
 			<li>数据分析</li>
 		</ul>
 		</nav>
-		
+
 		<div id="personinfo" class="right">
 			<div class="welcome text-primary">${sessionScope.msg }欢迎进入新闻地图</div>
-			用户名:
-			<p class="muted">${sessionScope.user.username }</p>
-			昵称:
-			<p class="text-info">${sessionScope.user.name }</p>
-			年龄:
-			<p class="muted">${sessionScope.user.age }</p>
-			性别:
-			<p class="muted">${sessionScope.user.gender }</p>
+
+			<div id="username" class="info">
+				用户名:
+				<u><span class="muted">${sessionScope.user.username }</span></u>
+			</div>
+			<div id="name" class="info">
+				昵称:
+				<u><span>${sessionScope.user.name }</span></u>
+			</div>
+			<div id="age" class="info">
+				年龄:
+				<u><span>${sessionScope.user.age }</span></u>
+			</div>
+			<div id="gender" class="info">
+				性别:
+				<u><span>${sessionScope.user.gender }</span></u>
+			</div>
 			<a href="../esri/enterchange.action"
-				class="btn btn-primary btn-lg active btn-sm glyphicon glyphicon-link"
-				role="button">修改信息</a>
-			<a href="../esri/statistics"
-				class="btn btn-success"
-				role="button" target="_blanket">新闻数据统计</a>
+				class="btn btn-primary active glyphicon glyphicon-link"
+				role="button">修改信息</a> <a href="../esri/statistics"
+				class="btn btn-success" role="button" target="_blanket">新闻数据统计</a>
 		</div>
 
-		<div id="viewDiv" class="right">
-		
-		</div>
+		<div id="viewDiv" class="right"></div>
 
-		<div id="analysis" class="right">
-		</div>
+		<div id="analysis" class="right"></div>
 
 	</div>
 	<script src="${pageContext.request.contextPath }/js/star.js"></script>

@@ -24,11 +24,13 @@ public class NewsAction extends ActionSupport {
 	private NewsService ns;
 	
 	public HttpServletRequest req = ServletActionContext.getRequest();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3e0d1ab709d27445e0c504f34c1d77b03d209404
 	public void initiateNews() {
-		System.out.println("锟斤拷锟绞碉拷前action");
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
-			System.out.println("前端发信息了");
 			List<News> news = ns.findRecentNews();
 			JSONArray ja = new JSONArray();
 			for(News n:news) {

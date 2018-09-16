@@ -15,8 +15,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
+import com.esri.entity.User;
 import com.esri.service.NewsService;
+<<<<<<< HEAD
 import com.esri.util.CalenderTools;
+=======
+import com.esri.service.UserService;
+>>>>>>> 3e0d1ab709d27445e0c504f34c1d77b03d209404
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations= {"classpath:applicationContext.xml"})
 
@@ -25,6 +30,9 @@ public class TestJunit {
 	@Resource
 	private NewsService news;
 
+	@Resource
+	private UserService us;
+	
 	
 	@Test
 	public void testfind() {
@@ -36,6 +44,13 @@ public class TestJunit {
 		Date date = new Date(mills*1000);
 		System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(date));
 		System.out.println(list);
+	}
+	
+	@Test
+	public void testChange() {
+		List<User> list = us.findAll();
+		System.out.println(list);
+		
 	}
 	@Test
 	public void testfind2() {
@@ -71,6 +86,7 @@ public class TestJunit {
 		JSONArray ja = news.statistics();
 		System.out.println(ja);
 	}
+<<<<<<< HEAD
 	
 	@Test
 	public void test7() throws ParseException {
@@ -79,6 +95,12 @@ public class TestJunit {
 		System.out.println(format);
 		System.out.println(new Date().getTime());
 		System.out.println(sf.parse(format));
+=======
+	@Test
+	public void test7() {
+		User user = us.findUserByUserName("admin111");
+		System.out.println(user);
+>>>>>>> 3e0d1ab709d27445e0c504f34c1d77b03d209404
 	}
 }
 

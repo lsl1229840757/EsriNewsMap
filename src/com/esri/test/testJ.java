@@ -16,7 +16,7 @@ public class testJ {
 
 	@Test
 	public void test() throws ParseException {
-		NewsDaoImpl nd = new NewsDaoImpl();
+		
 	}
 	@Test
 	public void test2() {
@@ -29,7 +29,7 @@ public class testJ {
 
 	@Test
 	public void test4() {
-		//System.out.println(LocalDateTime.now()); hibernate不支持
+		//System.out.println(LocalDateTime.now()); hibernate锟斤拷支锟斤拷
 		System.out.println(new java.sql.Date(new Date().getTime()));
 	}
 	@Test
