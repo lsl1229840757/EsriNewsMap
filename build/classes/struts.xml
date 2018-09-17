@@ -39,7 +39,8 @@
 		</action> 
 		<!-- 新闻action -->
 		<action name="exe" class="com.esri.action.NewsAction" method="executeAjax">
-		</action> 
+		</action>
+		
 		<action name="enterchange" class="com.esri.action.UserAction"
 			method="enterChange">
 			<result name="success">../user/changeInformation.jsp</result>

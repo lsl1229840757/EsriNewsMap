@@ -5,36 +5,27 @@
 <head>
 <meta charset="utf-8">
 <style type="text/css">
-.container{
-	height:600px;
-	width:100%;
-	margin:0 auto;
-}
-
-body{
-	height:600px;
+*{
+	height:100%;
 }
 </style>
 </head>
 
-<body style="height: 600px; margin: 0">
-	<div id="container" style="height: 500px"></div>
+<body>
+	<div id="container"></div>
 	<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 	<script type="text/javascript"
 		src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			var dom = document.getElementById("container");
-			var myChart = echarts.init(dom);
+			var myChart = echarts.init(dom,'dark');
 			var app = {};
 			option = null;
 			$.getJSON('../esri/exe.action', function(data) {
 				myChart.setOption(option = {
 					title : {
 						text : '新闻展示'
-					},
-					tooltip : {
-						trigger : 'axis'
 					},
 					xAxis : {
 						data :data.map(function(item) {

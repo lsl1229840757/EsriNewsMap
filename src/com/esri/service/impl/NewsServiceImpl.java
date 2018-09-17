@@ -53,9 +53,6 @@ public class NewsServiceImpl implements NewsService {
 
 	@Override
 	public JSONArray statistics() {
-		/**
-		 * 生成10天的日期
-		 */
 		Date now = new Date();
 		long yesterDay = CalenderTools.getYesterDay(now);
 		now = new Date(yesterDay * 1000);
