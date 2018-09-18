@@ -29,7 +29,7 @@ require([
       "dojo/domReady!"
     ], function(Map,SceneView,GraphicsLayer, Graphic){
     		var map = new Map({
-    	        basemap: "hybrid"
+    	        basemap: "dark-gray"
     	      });
 
            	var view = new SceneView({
@@ -44,11 +44,12 @@ require([
                    ambientOcclusionEnabled: true
                  }
                },
-               scale: 18000000,          
-               center: [117, 36]  
+               scale: 60000000,          
+               center:  [117, 36]
            	});
            	var graphicsLayer = new GraphicsLayer();
           	map.add(graphicsLayer);
+          	var tar = null;
 			//初始化新闻
     		//第一次访问,这里使用ajax获取当天的全部新闻
 		  	$.ajax({
@@ -58,12 +59,13 @@ require([
 		  		data :"pubDate="+new Date().getTime(),
 		  		dataType : "json",
 		  		contentType :'application/x-www-form-urlencoded; charset=UTF-8',
-		  		async:true,
+		  		async:false,
 		  		success : function(data) {
 		  			//这里的数据是jsonArray
 		  			for(var i=0;i<data.length;i++){
 		  				showNews(data[i]);
 		  			}
+		  			tar = [data[0].longitude,data[0].latitude];
 		  			var popup = view.popup;
 		  			 popup.on("trigger-action", function(event) {
 		 		        if (event.action.id === "goIt") {
@@ -79,16 +81,25 @@ require([
 		  			alert("error");
 		  		}
 		  	});
+		  	
+			var opts = {
+	           		  duration: 7000,
+	           		};
+	           		view.goTo({
+	           		  target: tar,
+	           		  zoom:10
+	           		}, opts);
+		  	
+		  	
 		  	// 这里设置只能再请求5次，即前5天的数据，负数为放大，正数为缩小
 		  	
 		  	var flag = 0;
 		  	var container = [null,null,null,null,null];
 		  	view.on("mouse-wheel",function(event){
                 if(event.deltaY > 0){
-                	if(flag > 0){
-                		alert("Jian")
+                	if(flag > 0 && container[flag-1] != null){
                 		//缩小
-                		map.layers.remove();
+                		map.layers.remove(container[flag-1]);
                 		flag--;
                 	}
                 }else{
@@ -101,7 +112,7 @@ require([
             		  		data :{"flag":flag},
             		  		dataType : "json",
             		  		contentType :'application/x-www-form-urlencoded; charset=UTF-8',
-            		  		async:false,
+            		  		async:true,
             		  		success : function(data) {
             		  			//这里的数据是jsonArray
             		  			for(var i=0;i<data.length;i++){
