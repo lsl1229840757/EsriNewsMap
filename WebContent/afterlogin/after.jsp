@@ -115,9 +115,9 @@ $("#changeInformation").click(function(){
 			<a href="javascript:void(0);"
 				class="btn btn-primary active glyphicon glyphicon-link"
 				role="button" id="changeInformation">修改信息</a> <a href="../esri/statistics"
-				class="btn btn-success" role="button" target="_blanket">新闻数据统计</a>
+				class="btn btn-success" role="button" target="_blank">新闻数据统计</a>
 				<a href="../esri/waterfall"
-				class="btn btn-success" role="button" target="_blanket">瀑布流展示新闻</a>
+				class="btn btn-success" role="button" target="_blank">瀑布流展示新闻</a>
 		</div>
 
 		<div id="viewDiv" class="right"></div>
