@@ -254,7 +254,7 @@
 </script>
 </head>
 <body>
-	<div class="container-fluid">
+	<div class="container">
 		<nav class="menu-activea">
 		<h1>MENU</h1>
 		<ul>
