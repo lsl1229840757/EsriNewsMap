@@ -57,6 +57,9 @@
 		<action name="initiateNews" class="com.esri.action.NewsAction" method="initiateNews">
 			<!-- AjAX无返回值 -->
 		</action>
+		<action name="getMoreNews" class="com.esri.action.NewsAction" method="getMoreNews">
+			<!-- AjAX无返回值 -->
+		</action>
 	
 	</package>
 	<package name="root2" extends="struts-default" namespace="/pict">

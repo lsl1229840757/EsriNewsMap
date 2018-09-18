@@ -27,6 +27,9 @@
 					title : {
 						text : '新闻展示'
 					},
+					tooltip : {
+						trigger : 'axis'
+					},
 					xAxis : {
 						data :data.map(function(item) {
 							for(var i in item){
