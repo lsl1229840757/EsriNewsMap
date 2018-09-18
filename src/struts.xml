@@ -39,7 +39,8 @@
 		</action> 
 		<!-- 新闻action -->
 		<action name="exe" class="com.esri.action.NewsAction" method="executeAjax">
-		</action> 
+		</action>
+		
 		<action name="enterchange" class="com.esri.action.UserAction"
 			method="enterChange">
 			<result name="success">../user/changeInformation.jsp</result>
@@ -54,6 +55,9 @@
 		
 		<!-- 初始化新闻 -->
 		<action name="initiateNews" class="com.esri.action.NewsAction" method="initiateNews">
+			<!-- AjAX无返回值 -->
+		</action>
+		<action name="getMoreNews" class="com.esri.action.NewsAction" method="getMoreNews">
 			<!-- AjAX无返回值 -->
 		</action>
 	
