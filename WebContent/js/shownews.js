@@ -1,3 +1,26 @@
+var colorarray = [[35,205,182,0.7],[142,229,213,0.7],[148,251,240,0.7],[192,247,252,0.7],[172,248,211,0.7],[230,228 ,192,0.7],[231,202,127,0.7],[255,215,187,0.7],[255,179,168,0.7],[255,76,108,0.7]]
+function formatDate(time,format='YY-MM-DD hh:mm'){
+    var date = new Date(time);
+
+    var year = date.getFullYear(),
+        month = date.getMonth()+1,//月份是从0开始的
+        day = date.getDate(),
+        hour = date.getHours(),
+        min = date.getMinutes(),
+        sec = date.getSeconds();
+    var preArr = Array.apply(null,Array(10)).map(function(elem, index) {
+        return '0'+index;
+    });////开个长度为10的数组 格式为 00 01 02 03
+
+    var newTime = format.replace(/YY/g,year)
+                        .replace(/MM/g,preArr[month]||month)
+                        .replace(/DD/g,preArr[day]||day)
+                        .replace(/hh/g,preArr[hour]||hour)
+                        .replace(/mm/g,preArr[min]||min)
+                        .replace(/ss/g,preArr[sec]||sec);
+
+    return newTime;         
+}
 require([
       "esri/Map",
       "esri/views/SceneView",
@@ -40,14 +63,74 @@ require([
 		  			//这里的数据是jsonArray
 		  			for(var i=0;i<data.length;i++){
 		  				showNews(data[i]);
-		  				
 		  			}
+		  			var popup = view.popup;
+		  			 popup.on("trigger-action", function(event) {
+		 		        if (event.action.id === "goIt") {
+		 		        	if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+		 		        	   window.open(event.action.url[1]);
+		 		        	} else {
+		 		        		window.open(event.action.url[0]);
+		 		        	}
+		 		        }
+		 		      });
 		  		},
 		  		error : function() {
 		  			alert("error");
 		  		}
 		  	});
-	      
+		  	// 这里设置只能再请求5次，即前5天的数据，负数为放大，正数为缩小
+		  	
+		  	var flag = 0;
+		  	var container = [null,null,null,null,null];
+		  	view.on("mouse-wheel",function(event){
+                if(event.deltaY > 0){
+                	if(flag > 0){
+                		alert("Jian")
+                		//缩小
+                		map.layers.remove();
+                		flag--;
+                	}
+                }else{
+                	//放大
+                	if(flag < 5 && container[flag] == null){
+                		$.ajax({
+            		  		method : "POST",
+            		  		timeout : 5000,
+            		  		url : "../esri/getMoreNews",
+            		  		data :{"flag":flag},
+            		  		dataType : "json",
+            		  		contentType :'application/x-www-form-urlencoded; charset=UTF-8',
+            		  		async:false,
+            		  		success : function(data) {
+            		  			//这里的数据是jsonArray
+            		  			for(var i=0;i<data.length;i++){
+            		  				container[flag] = showNews(data[i]);
+            		  			}
+            		  			var popup = view.popup;
+            		  			 popup.on("trigger-action", function(event) {
+            		 		        if (event.action.id === "goIt") {
+            		 		        	if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            		 		        	   window.open(event.action.url[1]);
+            		 		        	} else {
+            		 		        		window.open(event.action.url[0]);
+            		 		        	}
+            		 		        }
+            		 		      });
+            		  			 flag++;
+            		  			map.add(container[flag]);
+            		  		},
+            		  		error : function() {
+            		  			alert("error");
+            		  		}
+            		  	});
+                	}else if(flag<5 && container[flag]!=null){
+                		map.add(container[flag]);
+                	}
+                	
+                }
+            });
+		  	
   	//传入一个news的jsonObject
   	function showNews(news){
   			var point = {
@@ -55,46 +138,54 @@ require([
   		        x: news.longitude,
   		        y: news.latitude,
   		      };
-
+  			var col =  colorarray[Math.floor(Math.random()*11)];
   		    var markerSymbol = {
   		    	//这里以后设置大小
   		        type: "simple-marker", 
-  		        color: [226, 119, 40],
+  		        color:col,
   		        outline: { 
-  		          color: [255, 255, 255],
-  		          width: 2
-  		        }
+  		          color:col,
+  		          width: 3
+  		        },
+  		      size:Math.random()*20+5 //15-30
   		      };
 
   		      //类似于Map
   		    var attribute = {
-  		    		  图片: "<img src="+news.picUrl+"></img>",
   		    		  关键字: news.keyWord,
   		    		  新闻来源:news.origin,
-  		    		  时间:news.pubDate,
-  		    		  PC端查看:"<a href = '"+news.webUrl+"' target = _blanket>点此跳转</a>",
-  		    		  手机端查看:"<a href = '"+news.mobileUrl+"' target = _blanket>点此跳转</a>"
+  		    		  时间:formatDate(new Date(news.pubDate*1000)),
+  		      };
+  		  var go = {
+  		        title: "查看详情",
+  		        id: "goIt",
+  		        url:[news.webUrl,news.mobileUrl]
   		      };
   		    var template = {
-  		    		 title: news.title,
+  		    		title: "<p align = 'center'><b>"+news.title+"</b></p>",
    		            content: [{
    		              type: "fields",
    		              fieldInfos: [{
-   		                fieldName: "图片",
-   		              }, {
    		                fieldName: "关键字"
    		              }, {
    		                fieldName: "新闻来源"
    		              }, {
    		                fieldName: "时间"
-   		              },
-   		              {
-   		            	fieldName: "PC端查看"
-     		          },{
-     		        	 fieldName: "手机端查看"  
-     		          }
+   		              }
    		              ]
+   		            },{
+   		            	type:"text",
+   		            	title:"预览图片"
+   		            },{
+   		             type: "media",
+   		            mediaInfos: [{
+   		              type: "image",
+   		           value: {
+   	                sourceURL: news.picUrl
+   		           	}
    		            }]
+   		           }],
+   		        actions: [go]
   		      };
   		    var pointGraphic = new Graphic({
   		        geometry: point,
@@ -103,6 +194,6 @@ require([
   		        popupTemplate:template
   		      });
   		    graphicsLayer.add(pointGraphic);
+  		    return pointGraphic;
   	}
-  		
     });

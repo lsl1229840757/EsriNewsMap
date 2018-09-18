@@ -396,7 +396,8 @@ main {
 .grid .grid__sizer {
 	width: calc(50% - 20px);
 	margin: 0 10px 20px;
-	height:200px;
+	height:200px;s
+	
 }
 
 @media screen and (min-width: 60em) {

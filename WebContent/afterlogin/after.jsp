@@ -41,11 +41,9 @@
 			main.removeClass('menu-hover');
 		});
 		$('.right:eq(1)').hide();
-		$('.right:eq(2)').hide();
 		$('ul li').click(function() {
 			idx = $(this).index('ul li');
 			$('.right').eq(idx).show();
-
 			$('.right').not($('.right').eq(idx)).hide();
 			if (idx == 1) {
 				$('#canvas').hide();
@@ -73,7 +71,6 @@
 		<ul>
 			<li>个人信息</li>
 			<li>新闻地图</li>
-			<li>数据分析</li>
 		</ul>
 		</nav>
 
@@ -100,12 +97,11 @@
 				class="btn btn-primary active glyphicon glyphicon-link"
 				role="button">修改信息</a> <a href="../esri/statistics"
 				class="btn btn-success" role="button" target="_blanket">新闻数据统计</a>
+				<a href="../esri/waterfall"
+				class="btn btn-success" role="button" target="_blanket">瀑布流展示新闻</a>
 		</div>
 
 		<div id="viewDiv" class="right"></div>
-
-		<div id="analysis" class="right"></div>
-
 	</div>
 	<script src="${pageContext.request.contextPath }/js/star.js"></script>
 </body>

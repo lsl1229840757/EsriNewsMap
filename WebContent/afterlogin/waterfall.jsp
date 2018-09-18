@@ -10,8 +10,8 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,500,700"
 	rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="css2/normalize.css" />
-<link rel="stylesheet" type="text/css" href="css2/demo.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css2/normalize.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css2/demo.css" />
 <script>
 	document.documentElement.className = 'js';
 </script>
@@ -113,9 +113,9 @@
 	</div>
 	</main>
 
-	<script src="js/imagesloaded.pkgd.min.js"></script>
-	<script src="js/masonry.pkgd.min.js"></script>
-	<script src="js/anime.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="${pageContext.request.contextPath }/afterlogin/js/imagesloaded.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath }/afterlogin/js/masonry.pkgd.min.js"></script>
+	<script src="${pageContext.request.contextPath }/afterlogin/js/anime.min.js"></script>
+	<script src="${pageContext.request.contextPath }/afterlogin/js/main.js"></script>
 </body>
 </html>

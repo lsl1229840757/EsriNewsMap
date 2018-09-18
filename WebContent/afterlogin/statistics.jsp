@@ -9,15 +9,43 @@
 	height: 100%;
 }
 </style>
-<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <script type="text/javascript"
 	src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/afterlogin/css/normalize.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath }/afterlogin/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,500,700"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css2/normalize.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css2/demo.css" />
 <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">
 <script type="text/javascript">
 	$(function() {
-		var dom = $('.container')
+		var nav = $('nav'), menu = $('nav h1'), main = $('main'), open = false, hover = false;
+		menu.on('click', function() {
+			open = !open ? true : false;
+			nav.toggleClass('menu-active');
+			main.toggleClass('menu-active');
+			nav.removeClass('menu-hover');
+			main.removeClass('menu-hover');
+			console.log(open);
+		});
+		menu.hover(function() {
+			if (!open) {
+				nav.addClass('menu-hover');
+				main.addClass('menu-hover');
+			}
+		}, function() {
+			nav.removeClass('menu-hover');
+			main.removeClass('menu-hover');
+		});
+		var dom = $('.statistics')
 		var myChart = echarts.init(dom[0], 'dark');
 		var app = {};
 		option = null;
@@ -27,9 +55,9 @@
 					text : '新闻展示'
 				},
 				tooltip : {
-					trigger: 'axis',
-					position:function(p){ //其中p为当前鼠标的位置
-						return [p[0] + 10, p[1] - 10];
+					trigger : 'axis',
+					position : function(p) { // 其中p为当前鼠标的位置
+						return [ p[0] + 10, p[1] - 10 ];
 					},
 					axisPointer : {
 						type : 'cross',
@@ -37,7 +65,7 @@
 							backgroundColor : '#283b56'
 						}
 					},
-					extraCssText:'width:160px;height:60px;background:#272626a6'
+					extraCssText : 'width:160px;height:60px;background:#272626a6'
 				},
 				xAxis : {
 					data : data.map(function(item) {
@@ -126,12 +154,123 @@
 		if (option && typeof option === "object") {
 			myChart.setOption(option, true);
 		}
+		
+		var dom2 = $(".statistics2");
+		var myChart2 = echarts.init(dom2[0], 'dark');
+		option = null;
+		$.getJSON('../esri/exe.action', function(data) {
+			myChart2.setOption(option = {
+				title : {
+					text : '特性示例：渐变色 阴影 点击缩放',
+					subtext : 'Feature Sample: Gradient Color, Shadow, Click Zoom'
+				},
+				tooltip : {
+					position : function(p) { // 其中p为当前鼠标的位置
+						return [ p[0] + 10, p[1] - 10 ];
+					},
+					axisPointer : {
+						type : 'cross',
+						label : {
+							backgroundColor : '#283b56'
+						}
+					},
+					extraCssText : 'width:160px;height:60px;background:#272626a6'
+				},
+				xAxis : {
+					data : data.map(function(item) {
+						for ( var i in item) {
+							return i;
+						}
+					}),
+					axisLabel : {
+						inside : true,
+						textStyle : {
+							color : '#fff'
+						}
+					},
+					axisTick : {
+						show : false
+					},
+					axisLine : {
+						show : false
+					},
+					z : 10
+				},
+				yAxis : {
+					axisLine : {
+						show : false
+					},
+					axisTick : {
+						show : false
+					},
+					axisLabel : {
+						textStyle : {
+							color : '#999'
+						}
+					}
+				},
+				dataZoom : [ {
+					type : 'inside'
+				} ],
+				series : [ {
+					name : '新闻数目',
+					type : 'bar',
+					itemStyle : {
+						normal : {
+							color : '#c71e1ebd'
+						},
+						emphasis : {
+							color : '#c71e1ebd'
+
+						}
+					},
+					data : data.map(function(item) {
+						for ( var i in item) {
+							return item[i];
+						}
+					}),
+				} ]
+			})
+		})
+		// Enable data zoom when user click bar.
+		var zoomSize = 6;
+		myChart2.on('click', function(params) {
+			console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+			myChart2.dispatchAction({
+				type : 'dataZoom',
+				startValue : dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+				endValue : dataAxis[Math.min(params.dataIndex + zoomSize / 2,
+						data.length - 1)]
+			});
+		});
+		if (option && typeof option === "object") {
+			myChart2.setOption(option, true);
+		}
+		$('.statistics2').hide();
+		$('ul li').click(function() {
+			idx = $(this).index('ul li');
+			if(idx==0){
+				$('.statistics').show();
+				$('.statistics2').hide();
+			}else{
+				$('.statistics2').show();
+				$('.statistics').hide();
+			}
+		})
 	})
 </script>
 </head>
-
-
 <body>
-	<div class="container"></div>
+	<div class="container-fluid">
+		<nav class="menu-activea">
+		<h1>MENU</h1>
+		<ul>
+			<li>条形图</li>
+			<li>柱状图</li>
+		</ul>
+		</nav>
+		<div class="statistics"></div>
+		<div class="statistics2"></div>
+	</div>
 </body>
 </html>
