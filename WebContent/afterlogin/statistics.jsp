@@ -15,6 +15,13 @@
 	href="${pageContext.request.contextPath }/afterlogin/css/normalize.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/afterlogin/css/style.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,500,700"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css2/normalize.css" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css2/demo.css" />
 <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">

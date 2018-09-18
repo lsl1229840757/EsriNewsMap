@@ -63,6 +63,11 @@
 		<action name="initiateNews" class="com.esri.action.NewsAction" method="initiateNews">
 			<!-- AjAX无返回值 -->
 		</action>
+		<!-- 瀑布流新闻 -->
+		<action name="waterfall" class="com.esri.action.NewsAction">
+			<!-- AjAX无返回值 -->
+			<result name="success">../afterlogin/waterfall.jsp</result>
+		</action>
 		<action name="getMoreNews" class="com.esri.action.NewsAction" method="getMoreNews">
 			<!-- AjAX无返回值 -->
 		</action>

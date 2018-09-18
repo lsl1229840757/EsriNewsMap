@@ -107,5 +107,4 @@ public class NewsAction extends ActionSupport {
 			e.printStackTrace();
 		}
 	}
-	
 }
