@@ -19,9 +19,15 @@
 		<default-interceptor-ref name="mydefault" />
 		
 		<global-results>
-			<result name="error">/error.jsp</result>
+			<result name="error">../error.jsp</result>
 			<result name="login" type="redirect">../pict/LoginPage</result>
 		</global-results>
+		<!-- 配置跳转页面 -->
+		<action name="homePage">
+			<result name="success">../afterlogin/after.jsp</result>
+			<result name="input">../login.jsp</result>
+			<result name="error">../login.jsp</result>
+		</action>	
 			
 		<!-- 用户信息action -->
 		<action name="userInfo" class="com.esri.action.UserAction" method="userInfo">
@@ -80,9 +86,14 @@
 		<!-- 用户登陆action -->
 		<action name="login" class="com.esri.action.UserAction"
 			method="login">
-			<result name="success">../afterlogin/after.jsp</result>
-			<result name="input">/login.jsp</result>
-			<result name="error">/login.jsp</result>
+			<result name="success" type="redirectAction">
+			<param name="namespace">/esri</param>
+			<param name="actionName">homePage</param>
+			</result>
+			<result name="input">
+			../login.jsp
+			</result>
+			<result name="error">../error404.jsp</result>
 		</action>
 		<action name="ajax" class="com.esri.action.UserAction"
 			method="excuteAjax">

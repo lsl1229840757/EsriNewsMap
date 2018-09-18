@@ -7,7 +7,9 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/afterlogin/css/normalize.css" />
 <script src="https://js.arcgis.com/4.8/"></script>
-
+<script type="text/javascript">
+	var path = "${pageContext.request.contextPath }"
+</script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/afterlogin/css/style.css">
 <link rel="stylesheet"
@@ -20,8 +22,25 @@
 	src="${pageContext.request.contextPath }/js/jquery-3.3.1.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/js/shownews.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/zdialog/zDrag.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/zdialog/zDialog.js"></script>
 <script type="text/javascript">
-	$(function() {
+var diag = null;
+function d_close(){
+	diag.close();
+	window.location = "${pageContext.request.contextPath }/esri/homePage.action"
+}
+$(function() {
+$("#changeInformation").click(function(){
+	diag = new Dialog();
+	diag.Width = 600;
+	diag.Height = 480;
+	diag.Title = "用户信息修改";
+	diag.URL = "${pageContext.request.contextPath }/esri/enterchange.action";
+	diag.show();
+});
+
 		var nav = $('nav'), menu = $('nav h1'), main = $('main'), open = false, hover = false;
 		menu.on('click', function() {
 			open = !open ? true : false;
@@ -93,12 +112,12 @@
 				性别:
 				<u><span>${sessionScope.user.gender }</span></u>
 			</div>
-			<a href="../esri/enterchange.action"
+			<a href="javascript:void(0);"
 				class="btn btn-primary active glyphicon glyphicon-link"
-				role="button">修改信息</a> <a href="../esri/statistics"
-				class="btn btn-success" role="button" target="_blanket">新闻数据统计</a>
+				role="button" id="changeInformation">修改信息</a> <a href="../esri/statistics"
+				class="btn btn-success" role="button" target="_blank">新闻数据统计</a>
 				<a href="../esri/waterfall"
-				class="btn btn-success" role="button" target="_blanket">瀑布流展示新闻</a>
+				class="btn btn-success" role="button" target="_blank">瀑布流展示新闻</a>
 		</div>
 
 		<div id="viewDiv" class="right"></div>

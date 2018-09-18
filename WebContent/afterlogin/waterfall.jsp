@@ -24,7 +24,7 @@
 					var title = data[i].title;
 					var keyWord = data[i].keyWord;
 					var webUrl = data[i].webUrl;
-					$(this).html('<a href ='+webUrl+'>'+title+'.【关键字】:'+keyWord+'</a>');
+					$(this).html("<a href = "+webUrl+" target = '_blank'>"+title+".【关键字】:"+keyWord+"</a>");
 					$(this).css({"background-image": "url(" + picUrl + ")",'background-repeat':'no-repeat','background-size':'100% 100%','-moz-background-size':'100% 100%'});
 				}
 			})
