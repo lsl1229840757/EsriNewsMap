@@ -70,6 +70,12 @@ public class NewsAction extends ActionSupport {
 		ServletActionContext.getResponse().setCharacterEncoding("UTF-8");
 		ServletActionContext.getResponse().setContentType("text/html");
 		Date now = new Date();
+		long yesterDay = 0l;
+		for (int i = 0; i < 4; i++) {
+			yesterDay = CalenderTools.getYesterDay(now);
+			now = new Date(yesterDay * 1000);
+		}	
+		System.out.println(flag);
 		for(int i = 0;i <= flag;i++) {
 			long tempt = CalenderTools.getYesterDay(now);
 			now = new Date(tempt*1000);
