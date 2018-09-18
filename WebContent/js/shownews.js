@@ -97,11 +97,6 @@ require([
 		  	var container = [null,null,null,null,null];
 		  	view.on("mouse-wheel",function(event){
                 if(event.deltaY > 0){
-                	if(flag > 0 && container[flag-1] != null){
-                		//缩小
-                		map.layers.remove(container[flag-1]);
-                		flag--;
-                	}
                 }else{
                 	//放大
                 	if(flag < 5 && container[flag] == null){
@@ -116,7 +111,7 @@ require([
             		  		success : function(data) {
             		  			//这里的数据是jsonArray
             		  			for(var i=0;i<data.length;i++){
-            		  				container[flag] = showNews(data[i]);
+            		  				showNews(data[i]);
             		  			}
             		  			var popup = view.popup;
             		  			 popup.on("trigger-action", function(event) {
@@ -129,14 +124,11 @@ require([
             		 		        }
             		 		      });
             		  			 flag++;
-            		  			map.add(container[flag]);
             		  		},
             		  		error : function() {
             		  			alert("error");
             		  		}
             		  	});
-                	}else if(flag<5 && container[flag]!=null){
-                		map.add(container[flag]);
                 	}
                 	
                 }

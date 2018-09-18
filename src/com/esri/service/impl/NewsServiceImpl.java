@@ -55,10 +55,8 @@ public class NewsServiceImpl implements NewsService {
 	public JSONArray statistics() {
 		Date now = new Date();
 		long yesterDay = 0l;
-		for (int i = 0; i < 4; i++) {
 			yesterDay = CalenderTools.getYesterDay(now);
 			now = new Date(yesterDay * 1000);
-		}	
 		JSONArray ja = new JSONArray();
 		for (int i = 0; i < 10; i++) {
 			JSONObject jb = new JSONObject();
