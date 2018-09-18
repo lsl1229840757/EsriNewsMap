@@ -15,12 +15,13 @@ import com.esri.entity.HistoryNews;
 import com.esri.entity.News;
 import com.esri.service.NewsService;
 import com.esri.util.CalenderTools;
+
 @Service
 public class NewsServiceImpl implements NewsService {
 
 	@Resource
 	NewsDao nd;
-	
+
 	@Override
 	public List<News> findNewsByTitle(String title) {
 		return nd.findNewsByTitle(title);
@@ -55,8 +56,8 @@ public class NewsServiceImpl implements NewsService {
 	public JSONArray statistics() {
 		Date now = new Date();
 		long yesterDay = 0l;
-			yesterDay = CalenderTools.getYesterDay(now);
-			now = new Date(yesterDay * 1000);
+		yesterDay = CalenderTools.getYesterDay(now);
+		now = new Date(yesterDay * 1000);
 		JSONArray ja = new JSONArray();
 		for (int i = 0; i < 10; i++) {
 			JSONObject jb = new JSONObject();
@@ -64,8 +65,9 @@ public class NewsServiceImpl implements NewsService {
 			int value = nd.findHistoryNewsCountByTime(now);
 			jb.put(time, value);
 			ja.put(jb);
+			System.out.println(jb);
 			yesterDay = CalenderTools.getYesterDay(now);
-			now = new Date(yesterDay*1000);
+			now = new Date(yesterDay * 1000);
 		}
 		return ja;
 	}

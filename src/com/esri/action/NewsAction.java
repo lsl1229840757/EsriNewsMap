@@ -75,6 +75,7 @@ public class NewsAction extends ActionSupport {
 			yesterDay = CalenderTools.getYesterDay(now);
 			now = new Date(yesterDay * 1000);
 		}	
+		System.out.println(flag);
 		for(int i = 0;i <= flag;i++) {
 			long tempt = CalenderTools.getYesterDay(now);
 			now = new Date(tempt*1000);
