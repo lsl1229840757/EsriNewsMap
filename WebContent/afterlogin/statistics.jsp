@@ -52,7 +52,6 @@
 		$.getJSON('../esri/exe.action', function(data) {
 			myChart.setOption(option = {
 				title : {
-					text : '新闻展示'
 				},
 				tooltip : {
 					trigger : 'axis',
@@ -161,8 +160,7 @@
 		$.getJSON('../esri/exe.action', function(data) {
 			myChart2.setOption(option = {
 				title : {
-					text : '特性示例：渐变色 阴影 点击缩放',
-					subtext : 'Feature Sample: Gradient Color, Shadow, Click Zoom'
+					
 				},
 				tooltip : {
 					position : function(p) { // 其中p为当前鼠标的位置
@@ -207,6 +205,16 @@
 						textStyle : {
 							color : '#999'
 						}
+					}
+				},
+				toolbox : {
+					left : 'center',
+					feature : {
+						dataZoom : {
+							yAxisIndex : 'none'
+						},
+						restore : {},
+						saveAsImage : {}
 					}
 				},
 				dataZoom : [ {

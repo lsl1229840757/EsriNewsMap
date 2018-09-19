@@ -252,7 +252,7 @@ body {
 				class="col-xs-6" id="loginForm">
 				<div class="form-group has-feedback">
 					<label class="input_sty">用户名</label> <input type="text"
-						class="form-control" name="user.username" id="username"
+						class="form-control" AUTOCOMPLETE="off" name="user.username" id="username"
 						placeholder="用户名" />
 					<div class="error_sty">
 						<label id="userblank">${fieldErrors.username[0] }</label>
@@ -260,7 +260,7 @@ body {
 				</div>
 				<div class="form-group has-feedback">
 					<label class="input_sty2">密码</label> <input type="password"
-						class="form-control" name="user.password" id="pwd"
+						class="form-control" AUTOCOMPLETE="off" name="user.password" id="pwd"
 						placeholder="密码" />
 					<div class="error_sty">
 						<label id="pwdblank">${fieldErrors.password[0] }</label>
@@ -268,7 +268,7 @@ body {
 				</div>
 				<div class="form-group has-feedback">
 					<label class="checkLabel">验证码</label> <input type="text"
-						class="form-control" name="checkCode" id="checkCode" maxlength="4"
+						class="form-control" name="checkCode" AUTOCOMPLETE="off" id="checkCode" maxlength="4"
 						placeholder="验证码"> <img src="pict/draw.action" id="image"
 						alt="验证码" /> <a class="changeimage" onclick="refresh()"
 						href="javascript:void(0)">看不清，换一张</a>

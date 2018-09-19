@@ -107,7 +107,7 @@ require([
             		  		data :{"flag":flag},
             		  		dataType : "json",
             		  		contentType :'application/x-www-form-urlencoded; charset=UTF-8',
-            		  		async:true,
+            		  		async:false,
             		  		success : function(data) {
             		  			//这里的数据是jsonArray
             		  			for(var i=0;i<data.length;i++){

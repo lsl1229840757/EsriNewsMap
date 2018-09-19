@@ -24,22 +24,32 @@
 	src="${pageContext.request.contextPath }/js/shownews.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/zdialog/zDrag.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath }/zdialog/zDialog.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/zdialog/zDialog.js"></script>
 <script type="text/javascript">
-var diag = null;
-function d_close(){
-	diag.close();
-	window.location = "${pageContext.request.contextPath }/esri/homePage.action"
-}
-$(function() {
-$("#changeInformation").click(function(){
-	diag = new Dialog();
-	diag.Width = 600;
-	diag.Height = 480;
-	diag.Title = "用户信息修改";
-	diag.URL = "${pageContext.request.contextPath }/esri/enterchange.action";
-	diag.show();
-});
+	var diag = null;
+	function d_close() {
+		diag.close();
+		window.location = "${pageContext.request.contextPath }/esri/homePage.action"
+	}
+	$(function() {
+		var iWidth = $('#personinfo').width(); //弹出窗口的宽度;
+		var iHeight = $('#personinfo').height(); //弹出窗口的高度;
+		var iTop = (document.documentElement.clientHeight - iHeight) / 2
+		var iLeft = (document.documentElement.clientWidth - iWidth) / 2
+		$("#personinfo").css('position', 'absolute').css("top", iTop).css(
+				"left", iLeft)
+
+		$("#changeInformation")
+				.click(
+						function() {
+							diag = new Dialog();
+							diag.Width = 600;
+							diag.Height = 480;
+							diag.Title = "用户信息修改";
+							diag.URL = "${pageContext.request.contextPath }/esri/enterchange.action";
+							diag.show();
+						});
 
 		var nav = $('nav'), menu = $('nav h1'), main = $('main'), open = false, hover = false;
 		menu.on('click', function() {
@@ -73,17 +83,35 @@ $("#changeInformation").click(function(){
 	});
 </script>
 <style type="text/css">
-	.info{
-		font-size: 25px;
-		color: white;
-		margin-bottom: 10px;
-	}
-	
+*{
+	font-family: Consolas;
+}
+.info {
+	font-size: 18px;
+	color: white;
+	margin-bottom: 40px;
+}
+
+.fieldname {
+	margin-right: 20px;
+}
+
+#personinfo {
+	width: 500px;
+	height: 500px;
+	z-index: 10;
+	border: 2px solid;
+	border-radius: 25px;
+	-moz-border-radius: 25px;
+	padding-top:70px;
+	padding-left: 90px;
+	box-shadow: 0px 1px 5px 5px #888888;
+}
 </style>
 </head>
 <body>
 
-	<canvas id="canvas"> </canvas>
+	<canvas id="canvas"></canvas>
 	<div class="container">
 		<nav class="menu-activea">
 		<h1>MENU</h1>
@@ -94,30 +122,28 @@ $("#changeInformation").click(function(){
 		</nav>
 
 		<div id="personinfo" class="right">
-			<div class="welcome text-primary">${sessionScope.msg }欢迎进入新闻地图</div>
+			<div class="welcome text-info">
+				<b>${sessionScope.msg }欢迎进入新闻地图</b>
+			</div>
 
 			<div id="username" class="info">
-				用户名:
-				<u><span class="muted">${sessionScope.user.username }</span></u>
+				<span class="fieldname">用户名:</span> <span class="text-muted"><b>${sessionScope.user.username }</b></span>
 			</div>
 			<div id="name" class="info">
-				昵称:
-				<u><span>${sessionScope.user.name }</span></u>
+				<span class="fieldname">昵称:</span><b><span class="text-info">${sessionScope.user.name }</span></b>
 			</div>
 			<div id="age" class="info">
-				年龄:
-				<u><span>${sessionScope.user.age }</span></u>
+				<span class="fieldname">年龄:</span><b><span class="text-muted">${sessionScope.user.age }</span></b>
 			</div>
 			<div id="gender" class="info">
-				性别:
-				<u><span>${sessionScope.user.gender }</span></u>
+				<span class="fieldname">性别:</span> <b><span class="text-muted">${sessionScope.user.gender }</span></b>
 			</div>
 			<a href="javascript:void(0);"
-				class="btn btn-primary active glyphicon glyphicon-link"
-				role="button" id="changeInformation">修改信息</a> <a href="../esri/statistics"
-				class="btn btn-success" role="button" target="_blank">新闻数据统计</a>
-				<a href="../esri/waterfall"
-				class="btn btn-success" role="button" target="_blank">瀑布流展示新闻</a>
+				class="btn btn-primary active glyphicon glyphicon-link btn-sm"
+				role="button" id="changeInformation"><b>修改信息</b></a>&emsp; <a
+				href="../esri/statistics" class="btn btn-success btn-sm"
+				role="button" target="_blank"><b>新闻数据统计<b></b></a>&emsp; <a href="../esri/waterfall"
+				class="btn btn-info btn-sm" role="button" target="_blank"><b>瀑布流展示新闻</b></a>
 		</div>
 
 		<div id="viewDiv" class="right"></div>

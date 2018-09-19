@@ -103,14 +103,13 @@ nav li:hover {
 
 .right {
 	width:100%;
-	margin-top: 60px;
 	float: left;
 	top: 0;
 	left: 0;
 	bottom: 0;
 	position: absolute;
 	z-index:10;
-}
+} 
 .esri-ui-top-left {
 	margin-top:60px;
 }
@@ -118,3 +117,11 @@ nav li:hover {
 	font-size: 30px;
 	margin-bottom: 30px;
 }
+/* #viewDiv {
+	width:100%;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	position: absolute;
+	z-index:10;	
+} */
