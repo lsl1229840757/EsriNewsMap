@@ -99,7 +99,7 @@ require([
                 if(event.deltaY > 0){
                 }else{
                 	//放大
-                	if(flag < 5 && container[flag] == null){
+                	if(flag < 2 && container[flag] == null){
                 		$.ajax({
             		  		method : "POST",
             		  		timeout : 5000,
