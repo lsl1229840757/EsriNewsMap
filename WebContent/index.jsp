@@ -28,7 +28,7 @@
 <body>
 	<div id="container">
 		<div class="enter" id="Enter">
-			<span style="font-family: but; color: white" id="EnterSpan"></span>
+			<span style="font-family: but; color: white" id="EnterSpan">CartoNews</span>
 		</div>
 		<canvas id="canvas"></canvas>
 	</div>

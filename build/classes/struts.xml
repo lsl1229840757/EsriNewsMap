@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<!-- 配置开发者模式，修改热部署 -->
-	<constant name="struts.devMode" value="true"></constant>
+	
 	<constant name="struts.enable.DynamicMethodInvocation"
 		value="true" />
 	<package name="root" extends="struts-default" namespace="/esri">
@@ -18,7 +17,7 @@
 		<default-interceptor-ref name="mydefault" />
 
 		<global-results>
-			<result name="error">../error.jsp</result>
+			<result name="error">/error.jsp</result>
 			<result name="login" type="redirect">../pict/LoginPage</result>
 		</global-results>
 		<!-- 配置跳转页面 -->
