@@ -59,7 +59,7 @@ public class NewsServiceImpl implements NewsService {
 		yesterDay = CalenderTools.getYesterDay(now);
 		now = new Date(yesterDay * 1000);
 		JSONArray ja = new JSONArray();
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 15; i++) {
 			JSONObject jb = new JSONObject();
 			String time = new SimpleDateFormat("yyyy-MM-dd").format(now);
 			int value = nd.findHistoryNewsCountByTime(now);

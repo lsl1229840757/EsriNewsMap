@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>用户信息修改</title>
+<title>changeInfo</title>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/outerjs/jquery-3.3.1.js"></script>
 <link rel="stylesheet" type="text/css"
