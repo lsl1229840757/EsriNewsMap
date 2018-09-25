@@ -28,8 +28,7 @@
 <body>
 	<div id="container">
 		<div class="enter" id="Enter">
-			<span style="font-family: but; color: white" id="EnterSpan">Go
-				It!</span>
+			<span style="font-family: but; color: white" id="EnterSpan"></span>
 		</div>
 		<canvas id="canvas"></canvas>
 	</div>

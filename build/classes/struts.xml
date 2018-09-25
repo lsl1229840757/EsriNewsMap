@@ -8,11 +8,11 @@
 	<package name="root" extends="struts-default" namespace="/esri">
 		<interceptors>
 			<!-- 非法登陆拦截器 -->
-			<!-- <interceptor name="authority" class="com.esri.interceptor.AuthorityInterceptor"> 
-				</interceptor> -->
+			<interceptor name="authority" class="com.esri.interceptor.AuthorityInterceptor"> 
+			</interceptor>
 			<interceptor-stack name="mydefault">
 				<interceptor-ref name="defaultStack" />
-				<!-- <interceptor-ref name="authority"></interceptor-ref> -->
+				<interceptor-ref name="authority"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="mydefault" />
