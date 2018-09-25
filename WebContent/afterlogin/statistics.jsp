@@ -23,7 +23,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css2/normalize.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/afterlogin/css2/demo.css" />
-<script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/outerjs/jquery-3.3.1.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">
 
