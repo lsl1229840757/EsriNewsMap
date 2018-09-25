@@ -150,7 +150,6 @@ $("form").submit(function() {
 	$(".form-control").blur();
 	result = 0;
 	$(".form-control").each(function() {
-		alert($(this).data('s'));
 		result += $(this).data('s');
 	});
 	if (result != 6) {
