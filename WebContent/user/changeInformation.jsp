@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户信息修改</title>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-3.3.1.js"></script>
+	src="${pageContext.request.contextPath }/outerjs/jquery-3.3.1.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
@@ -16,108 +16,10 @@
 	href="${pageContext.request.contextPath }/particles/css/default.css">
 <link rel="stylesheet" media="screen"
 	href="${pageContext.request.contextPath }/particles/css/style.css">
+<link rel="stylesheet" media="screen"
+	href="${pageContext.request.contextPath }/mycss/changeInformation.css">
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/validate.js"></script>
-<style type="text/css">
-html {-apple-system ,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans
-	GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans
-	SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han
-	Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif
-	
-}
-.error_sty {
-	color: red;
-	margin: 5px 5px 0 10px;
-}
-
-.welcome {
-	font-size: 25px;
-	margin-bottom: 20px;
-	margin-left: 0px;
-}
-</style>
-<script type="text/javascript">
-	$(function() {
-		$("input[id=checkCode]").blur(
-				function() {
-					validateInput('checkCode', 'identblank', 'checkLabel') ? $(
-							this).data({
-						's' : 1
-					}) : $(this).data({
-						's' : 0
-					});
-				});
-		$("input[id=name]").blur(function() {
-			validateInput('name', 'nameblank', 'nickLabel') ? $(this).data({
-				's' : 1
-			}) : $(this).data({
-				's' : 0
-			});
-		});
-		$("input[id=age]").blur(
-				function() {
-					if (validateAge('age', 'ageblank')
-							&& validateInput('age', 'ageblank', 'ageLabel')) {
-						$(this).data({
-							's' : 1
-						});
-					} else {
-						$(this).data({
-							's' : 0
-						});
-					}
-				});
-		$("input[id=checkCode]").keyup(
-				function() {
-					validateInput('checkCode', 'identblank', 'checkLabel') ? $(
-							this).data({
-						's' : 1
-					}) : $(this).data({
-						's' : 0
-					});
-				});
-		$("input[id=name]").keyup(function() {
-			validateInput('name', 'nameblank', 'nickLabel') ? $(this).data({
-				's' : 1
-			}) : $(this).data({
-				's' : 0
-			});
-		});
-		$("input[id=age]").keyup(function() {
-			if (validateAge() && validateInput('age', 'ageblank', 'ageLabel')) {
-				$(this).data({
-					's' : 1
-				});
-			} else {
-				$(this).data({
-					's' : 0
-				});
-			}
-		});
-		$("form").submit(function() {
-			$(".form-control").blur();
-			result = 0;
-			$(".form-control").each(function() {
-				result += $(this).data('s');
-			});
-			if (result != 3) {
-				$("#msg").html("<font color='red'>请确认用户信息是否全部正确填写!</font>");
-				return false;
-			}
-		});
-	});
-</script>
-<style type="text/css">
-.container {
-	width: 477px;
-	height: 479px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	margin-top: -239px;
-	margin-left: -238px;
-}
-</style>
+	src="${pageContext.request.contextPath }/myjs/validate.js"></script>
 </head>
 <body>
 	<div id="particles-js" style="height: 100%; width: 100%">
@@ -176,5 +78,6 @@ html {-apple-system ,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans
 		</div>
 	</div>
 	<script type="text/javascript" src="../bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath }/myjs/changeInformation.js"></script>
 </body>
 </html>

@@ -17,11 +17,11 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath }/css/star.css">
+	href="${pageContext.request.contextPath }/starbgcss/star.css">
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/jquery-3.3.1.js"></script>
+	src="${pageContext.request.contextPath }/outerjs/jquery-3.3.1.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath }/js/shownews.js"></script>
+	src="${pageContext.request.contextPath }/myjs/shownews.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath }/zdialog/zDrag.js"></script>
 <script type="text/javascript"
@@ -148,6 +148,6 @@
 
 		<div id="viewDiv" class="right"></div>
 	</div>
-	<script src="${pageContext.request.contextPath }/js/star.js"></script>
+	<script src="${pageContext.request.contextPath }/myjs/star.js"></script>
 </body>
 </html>
