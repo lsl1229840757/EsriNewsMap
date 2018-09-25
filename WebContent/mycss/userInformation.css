@@ -1,0 +1,20 @@
+html {-apple-system ,"Helvetica Neue",Arial,"PingFang SC","Hiragino Sans
+	GB",STHeiti,"Microsoft YaHei","Microsoft JhengHei","Source Han Sans
+	SC","Noto Sans CJK SC","Source Han Sans CN","Noto Sans SC","Source Han
+	Sans TC","Noto Sans CJK TC","WenQuanYi Micro Hei",SimSun,sans-serif
+	
+}
+.welcome{
+	font-size:30px;
+	margin-bottom: 30px;
+}
+h1{
+	color:green;
+	text-align: center;
+	display: block;
+	margin-top: 100px;
+}
+
+#Ok{
+	margin-left:250px;
+}

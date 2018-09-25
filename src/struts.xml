@@ -8,16 +8,15 @@
 	<package name="root" extends="struts-default" namespace="/esri">
 		<interceptors>
 			<!-- 非法登陆拦截器 -->
-			<!-- <interceptor name="authority"
-				class="com.esri.interceptor.AuthorityInterceptor">
-			</interceptor> -->
+			<interceptor name="authority" class="com.esri.interceptor.AuthorityInterceptor"> 
+			</interceptor>
 			<interceptor-stack name="mydefault">
 				<interceptor-ref name="defaultStack" />
-				<!-- <interceptor-ref name="authority"></interceptor-ref> -->
+				<interceptor-ref name="authority"></interceptor-ref>
 			</interceptor-stack>
 		</interceptors>
 		<default-interceptor-ref name="mydefault" />
-		
+
 		<global-results>
 			<result name="error">../error.jsp</result>
 			<result name="login" type="redirect">../pict/LoginPage</result>
@@ -27,26 +26,29 @@
 			<result name="success">../afterlogin/after.jsp</result>
 			<result name="input">../login.jsp</result>
 			<result name="error">../login.jsp</result>
-		</action>	
-			
+		</action>
+
 		<!-- 用户信息action -->
-		<action name="userInfo" class="com.esri.action.UserAction" method="userInfo">
+		<action name="userInfo" class="com.esri.action.UserAction"
+			method="userInfo">
 			<result name="success">user/userInformation.jsp</result>
 			<result name="input">user/userInformation.jsp</result>
-		</action> 
+		</action>
 
 		<action name="statistics">
 			<result>../afterlogin/statistics.jsp</result>
 		</action>
 
 		<!-- 新闻action -->
-		<action name="map" class="com.esri.action.UserAction" method="entermap">
+		<action name="map" class="com.esri.action.UserAction"
+			method="entermap">
 			<result name="success">../newsMap/map2.jsp</result>
-		</action> 
-		<!-- 新闻action -->
-		<action name="exe" class="com.esri.action.NewsAction" method="executeAjax">
 		</action>
-		
+		<!-- 新闻action -->
+		<action name="exe" class="com.esri.action.NewsAction"
+			method="executeAjax">
+		</action>
+
 		<action name="enterchange" class="com.esri.action.UserAction"
 			method="enterChange">
 			<result name="success">../user/changeInformation.jsp</result>
@@ -58,9 +60,10 @@
 			<result name="success">../user/userInformation.jsp</result>
 			<result name="input">../user/changeInformation.jsp</result>
 		</action>
-		
+
 		<!-- 初始化新闻 -->
-		<action name="initiateNews" class="com.esri.action.NewsAction" method="initiateNews">
+		<action name="initiateNews" class="com.esri.action.NewsAction"
+			method="initiateNews">
 			<!-- AjAX无返回值 -->
 		</action>
 		<!-- 瀑布流新闻 -->
@@ -68,41 +71,45 @@
 			<!-- AjAX无返回值 -->
 			<result name="success">../afterlogin/waterfall.jsp</result>
 		</action>
-		<action name="getMoreNews" class="com.esri.action.NewsAction" method="getMoreNews">
+		<action name="getMoreNews" class="com.esri.action.NewsAction"
+			method="getMoreNews">
 			<!-- AjAX无返回值 -->
 		</action>
-	
+
 	</package>
-	<package name="root2" extends="struts-default" namespace="/pict">
+	<package name="root2" extends="struts-default"
+		namespace="/pict">
 		<!-- 李松廉修改：注册页面的访问 -->
-		<action name="RegisterPage" class="com.esri.action.UserAction" method="enterRegist">
-			<result name="success">/regist.jsp</result>			
+		<action name="RegisterPage" class="com.esri.action.UserAction"
+			method="enterRegist">
+			<result name="success">/regist.jsp</result>
 		</action>
-		
+
 		<!-- 李松廉修改：登录页面的访问 -->
-		<action name="LoginPage" class="com.esri.action.UserAction" method="enterLogin">
-			<result name="success">/login.jsp</result>			
+		<action name="LoginPage" class="com.esri.action.UserAction"
+			method="enterLogin">
+			<result name="success">/login.jsp</result>
 		</action>
 		<!-- 用户登陆action -->
 		<action name="login" class="com.esri.action.UserAction"
 			method="login">
 			<result name="success" type="redirectAction">
-			<param name="namespace">/esri</param>
-			<param name="actionName">homePage</param>
+				<param name="namespace">/esri</param>
+				<param name="actionName">homePage</param>
 			</result>
 			<result name="input">
-			../login.jsp
+				../login.jsp
 			</result>
 			<result name="error">../error404.jsp</result>
 		</action>
 		<action name="ajax" class="com.esri.action.UserAction"
 			method="excuteAjax">
-			
+
 		</action>
-		
-		<action name="ajaxImage" class="com.esri.action.CreateImageAction"
-			method="executeAjax">
-			
+
+		<action name="ajaxImage"
+			class="com.esri.action.CreateImageAction" method="executeAjax">
+
 		</action>
 		<!-- 产生验证码action -->
 		<action name="draw" class="com.esri.action.CreateImageAction"
@@ -112,13 +119,16 @@
 				<param name="inputName">inputStream</param>
 			</result>
 		</action>
-		
+
 		<!-- 用户注册action -->
 		<action name="regist" class="com.esri.action.UserAction"
 			method="regist">
-			<result name="success">/user/userInformation.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="namespace">/esri</param>
+				<param name="actionName">homePage</param>
+			</result>
 			<result name="input">/regist.jsp</result>
 		</action>
-	
+
 	</package>
 </struts>
