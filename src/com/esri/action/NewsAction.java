@@ -62,7 +62,6 @@ public class NewsAction extends ActionSupport {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
 	}
 	
 	public void getMoreNews() {

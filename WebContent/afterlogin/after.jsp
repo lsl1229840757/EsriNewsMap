@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -123,9 +124,8 @@
 
 		<div id="personinfo" class="right">
 			<div class="welcome text-info">
-				<b>${sessionScope.msg }欢迎进入新闻地图</b>
+				<b><s:property value="#msg"/>欢迎进入新闻地图</b>
 			</div>
-
 			<div id="username" class="info">
 				<span class="fieldname">用户名:</span> <span class="text-muted"><b>${sessionScope.user.username }</b></span>
 			</div>

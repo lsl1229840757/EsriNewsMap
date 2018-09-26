@@ -21,6 +21,7 @@ import com.opensymphony.xwork2.ActionSupport;
 @Repository
 @SuppressWarnings("serial")
 public class UserAction extends ActionSupport {
+	
 	public UserAction() {
 		super();
 	}
@@ -156,7 +157,6 @@ public class UserAction extends ActionSupport {
 		user.setAge(Integer.parseInt(this.age));
 		us.add(user);
 		session.put("user", user);
-		session.put("msg", "注册成功!");
 		return super.SUCCESS;
 	}
 
